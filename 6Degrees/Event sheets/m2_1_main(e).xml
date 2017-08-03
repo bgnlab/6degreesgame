@@ -1,0 +1,1759 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>m2_1_main(e)</name>
+    <events>
+        <variable constant="0" name="m2_1_wireChecker" sid="337780905068152" static="0" type="number">0</variable>
+        <include>GG Scores and Levels</include>
+        <variable constant="0" name="m2_1_blinkCount" sid="875162946210545" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_tutPage" sid="113542597187029" static="0" type="number">1</variable>
+        <variable constant="0" name="m2_1_chainzz" sid="871525209252249" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_chainzzzz" sid="711375661151982" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_score" sid="404060174331174" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_PrevDragMouseX" sid="330927879285792" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_DiffX" sid="990804509311841" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_DragMouseX" sid="544104138559371" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_playing" sid="833018042651533" static="0" type="number">0</variable>
+        <variable constant="0" name="m2_1_win" sid="631573591262190" static="0" type="number">-1</variable>
+        <variable constant="0" name="m2_1_timer" sid="886606613080031" static="0" type="number">30</variable>
+        <event-group description="" sid="487333071599878" title="Scoring &amp; Hints3">
+            <sub-events>
+                <event-block sid="512134496382777">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="180437779022043" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-21" name="Reset global variables" sid="225986984781708" type="System" />
+                        <action id="0" name="Call function" sid="718664221387032" type="Function">
+                            <param id="0" name="Name">&quot;GG Fetch State&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;m2_1 Initialize Game&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="555017852070011">
+                    <conditions>
+                        <condition id="0" name="On function" sid="997627269459168" type="Function">
+                            <param id="0" name="Name">&quot;m2_1 Initialize Game&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-18" name="Set layer opacity" sid="798782154387194" type="System">
+                            <param id="0" name="Layer">&quot;gameEnd&quot;</param>
+                            <param id="1" name="Opacity">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="477203667155880" type="m2_1_endBlur">
+                            <param id="0" name="X">960</param>
+                            <param id="1" name="Y">600</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="499072531717642" type="m2_1_Tv">
+                            <param id="0" name="Animation">&quot;Animation3&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-42" name="Signal" sid="693673719398007" type="System">
+                            <param id="0" name="Tag">&quot;m2_1_init&quot;</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="605506972680003" type="m2_1_endBlur" />
+                        <action id="-24" name="Move to top" sid="933458037051535" type="m2_1_ACLight" />
+                        <action id="-29" name="Move to object" sid="895276253672865" type="m2_1_boilerLight">
+                            <param id="0" name="Where">1</param>
+                            <param id="1" name="Object">m2_1_closetDoor</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="676027071583420" type="m2_1_TvLight" />
+                    </actions>
+                    <sub-events>
+                        <event-block sid="254636161755232">
+                            <conditions>
+                                <condition id="0" name="Compare value" sid="193077515360598" type="GG_State">
+                                    <param id="0" name="Key">&quot;tutorial_finished&quot;</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="228223662701026" type="m2_1_flashy" />
+                                <action id="-9" name="Destroy" sid="338066286639752" type="m2_1_flashy2" />
+                                <action id="-9" name="Destroy" sid="929650551396628" type="m2_1_Tutorial" />
+                                <action id="-9" name="Destroy" sid="649697108762057" type="m2_1_tutText" />
+                                <action id="-9" name="Destroy" sid="747369069030042" type="m2_1_tutText2" />
+                                <action id="-9" name="Destroy" sid="761806760200593" type="m2_1_tutText3" />
+                                <action id="-9" name="Destroy" sid="669812770309754" type="m2_1_tuttap" />
+                                <action id="-9" name="Destroy" sid="272915195979213" type="m2_1_blink" />
+                                <action id="-9" name="Set value" sid="137833991531682" type="System">
+                                    <param id="0" name="Variable">m2_1_playing</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="166119164761731" type="System">
+                                    <param id="0" name="Variable">m2_1_tutPage</param>
+                                    <param id="1" name="Value">4</param>
+                                </action>
+                                <action id="-4" name="Set layer visible" sid="184863722632442" type="System">
+                                    <param id="0" name="Layer">&quot;tutorial&quot;</param>
+                                    <param id="1" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="267251410705124">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="998455181533682" type="System" />
+                            </conditions>
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="157586734497547">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="683978094421931" type="System">
+                            <param id="0" name="Interval (seconds)">0.01</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="571273113850402" type="System">
+                            <param id="0" name="Variable">m2_1_win</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="208816401687526" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-11" name="Subtract from" sid="882844352350707" type="System">
+                            <param id="0" name="Variable">m2_1_timer</param>
+                            <param id="1" name="Value">0.01</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="128498467808550">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="976822605895493" type="System" />
+                        <condition id="-14" name="Compare variable" sid="175420614351503" type="System">
+                            <param id="0" name="Variable">m2_1_timer</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-5" name="Set width" sid="370745155983555" type="m2_1_timer">
+                            <param id="0" name="Width">64*m2_1_timer</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="617020368062404">
+                    <conditions>
+                        <condition id="17" name="On tap object" sid="409663560429986" type="Touch">
+                            <param id="0" name="Object">m2_1_door</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="927766293099271" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="178985806137339" type="System">
+                            <param id="0" name="Variable">m2_1_win</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="231334974176187" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Play" sid="575700711376460" type="Audio">
+                            <param id="0" name="Audio file">sfx_door_open</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="688864562103805">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="797441244916276" type="System">
+                            <param id="0" name="Variable">m2_1_timer</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0.01</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="732086264413989" type="System">
+                            <param id="0" name="Variable">m2_1_win</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="486357222177494" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="327040501228029">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="433891372764461" type="System">
+                            <param id="0" name="Variable">m2_1_timer</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">5.01</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="675543159951148" type="System">
+                            <param id="0" name="Variable">m2_1_timer</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-42" name="Signal" sid="846909333657744" type="System">
+                            <param id="0" name="Tag">&quot;baeaeaeh&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="797720219986523">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="457934625249457" type="System">
+                    <param id="0" name="Variable">m2_1_playing</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-group description="" sid="784136758654456" title="WaterHeater2">
+                    <sub-events>
+                        <event-block sid="553326719251046">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="924287022382620" type="Touch">
+                                    <param id="0" name="Object">m2_1_key</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="989941152616452" type="m2_1_lock">
+                                    <param id="0" name="Instance variable">pickUp</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="318484986006248" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="809702932282564" type="System">
+                                    <param id="0" name="Seconds">0.1</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="408229358421381" type="m2_1_key" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="830445286173568">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="577651529261859" type="Touch">
+                                    <param id="0" name="Object">m2_1_lock</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="305490034853002" type="m2_1_lock">
+                                    <param id="0" name="Instance variable">pickUp</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="576629742996022" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="341240888565594" type="m2_1_lock" />
+                                <action id="-16" name="Wait" sid="697630019217613" type="System">
+                                    <param id="0" name="Seconds">0.2</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="128820719377685" type="m2_1_closetDoor">
+                                    <param id="0" name="Instance variable">lock</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="309397070225784">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="907524453698321" type="m2_1_key">
+                                    <param id="0" name="Object">m2_1_lock</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="809361506410277" type="m2_1_lock">
+                                    <param id="0" name="Instance variable">pickUp</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="668466549151591" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="374006119229348" type="m2_1_lock" />
+                                <action id="-9" name="Destroy" sid="721212601207365" type="m2_1_key" />
+                                <action id="-16" name="Wait" sid="827101165229939" type="System">
+                                    <param id="0" name="Seconds">0.2</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="803758091811936" type="m2_1_closetDoor">
+                                    <param id="0" name="Instance variable">lock</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="326551952842101">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="112559444782401" type="Touch">
+                                    <param id="0" name="Object">m2_1_closetDoor</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="717031102409335" type="m2_1_closetDoor">
+                                    <param id="0" name="Instance variable">open</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="798748254078857" type="m2_1_closetDoor">
+                                    <param id="0" name="Instance variable">lock</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-29" name="Move to object" sid="352266510262115" type="m2_1_closetDoor">
+                                    <param id="0" name="Where">1</param>
+                                    <param id="1" name="Object">m2_1_waterHeater</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="360890700214712" type="m2_1_closetDoor">
+                                    <param id="0" name="Animation">&quot;Animation2&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-24" name="Move to top" sid="454369125198616" type="m2_1_boilerLight" />
+                                <action id="-16" name="Wait" sid="767097222318002" type="System">
+                                    <param id="0" name="Seconds">0.01</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="905174218150321" type="m2_1_closetDoor">
+                                    <param id="0" name="Instance variable">open</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="234185471110098" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                                <action id="3" name="Set volume" sid="593840890703578" type="Audio">
+                                    <param id="0" name="Tag">&quot;Heat&quot;</param>
+                                    <param id="1" name="dB">5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="799970480933680">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="700079584762150" type="Touch" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="547006592773101" type="m2_1_closetDoor">
+                                    <param id="0" name="Instance variable">open</param>
+                                </condition>
+                                <condition id="4" name="Is touching object" sid="174389629426030" type="Touch">
+                                    <param id="0" name="Object">m2_1_closetDoor</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-14" name="Toggle boolean" sid="987602936878441" type="m2_1_waterHeater">
+                                    <param id="0" name="Instance variable">power</param>
+                                </action>
+                                <action id="0" name="Play" sid="291425105808474" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="410141153509843">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="731975067510303" type="m2_1_waterHeater">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Set opacity" sid="695751450699572" type="m2_1_boilerLight">
+                                            <param id="0" name="Opacity">100</param>
+                                        </action>
+                                        <action id="-11" name="Subtract from" sid="811270315487818" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="22" name="Set paused" sid="166867237845347" type="Audio">
+                                            <param id="0" name="Tag">&quot;Heat&quot;</param>
+                                            <param id="1" name="State">1</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="901165988085207" type="m2_1_closetDoor">
+                                            <param id="0" name="Animation">&quot;Animation2&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="236309931814893">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="625165116264181" type="m2_1_waterHeater">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Set opacity" sid="825362590550836" type="m2_1_boilerLight">
+                                            <param id="0" name="Opacity">0</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="876116706497209" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="22" name="Set paused" sid="657383420711763" type="Audio">
+                                            <param id="0" name="Tag">&quot;Heat&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="385257962614516" type="m2_1_closetDoor">
+                                            <param id="0" name="Animation">&quot;Animation3&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="187479216285215" title="TV2">
+                    <sub-events>
+                        <event-block sid="263318323456091">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="221102149912302" type="Touch">
+                                    <param id="0" name="Object">m2_1_TVPlug</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="21" name="Set immovable" sid="331656199912706" type="m2_1_plugHole">
+                                    <param id="0" name="Setting">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="293017938572900" type="m2_1_Tv">
+                                    <param id="0" name="Instance variable">power</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="597897486173994">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="379570291175662" type="m2_1_Tv">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Set opacity" sid="651774349918923" type="m2_1_TvLight">
+                                            <param id="0" name="Opacity">100</param>
+                                        </action>
+                                        <action id="-11" name="Subtract from" sid="884531608864552" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="554498627876089">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="387102681219831" type="m2_1_Tv">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Set opacity" sid="873634808117153" type="m2_1_TvLight">
+                                            <param id="0" name="Opacity">0</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="925451372836690" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="862443991808621" type="Audio">
+                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="836489866314695" type="m2_1_Tv">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="992373461212724">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="358449080263876" type="Touch">
+                                    <param id="0" name="Object">m2_1_Tv</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="708385709753823" type="m2_1_Tv">
+                                    <param id="0" name="Instance variable">power</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-14" name="Toggle boolean" sid="275154289118255" type="m2_1_Tv">
+                                    <param id="0" name="Instance variable">on</param>
+                                </action>
+                                <action id="0" name="Play" sid="665865791006274" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="924054027053935">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="982909801944610" type="m2_1_Tv">
+                                            <param id="0" name="Instance variable">on</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="282172878897223" type="m2_1_Tv">
+                                            <param id="0" name="Animation">&quot;Animation3&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="409972875574071">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="968053297058604" type="m2_1_Tv">
+                                            <param id="0" name="Instance variable">on</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="625649643104495" type="m2_1_Tv">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="123098448798544" title="MainLight2">
+                    <sub-events>
+                        <event-block sid="910542634217173">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="164487801555154" type="Touch" />
+                                <condition id="4" name="Is touching object" sid="597067592061441" type="Touch">
+                                    <param id="0" name="Object">m2_1_lightSwitch</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-14" name="Toggle boolean" sid="145346129557126" type="m2_1_lightSwitch">
+                                    <param id="0" name="Instance variable">power</param>
+                                </action>
+                                <action id="0" name="Play" sid="667312837733068" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="983860881393412">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="728477485480696" type="m2_1_lightSwitch">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Set opacity" sid="777449873512502" type="m2_1theLight">
+                                            <param id="0" name="Opacity">95</param>
+                                        </action>
+                                        <action id="-16" name="Set opacity" sid="907583485191325" type="m2_1_dpprCrack">
+                                            <param id="0" name="Opacity">70</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="534490677007931" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="880672204223816">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="194784356543843" type="m2_1_lightSwitch">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Set opacity" sid="495819015126602" type="m2_1theLight">
+                                            <param id="0" name="Opacity">0</param>
+                                        </action>
+                                        <action id="-16" name="Set opacity" sid="694491257224865" type="m2_1_dpprCrack">
+                                            <param id="0" name="Opacity">10</param>
+                                        </action>
+                                        <action id="-3" name="Set position" sid="519201446045227" type="m2_1theLight">
+                                            <param id="0" name="X">960</param>
+                                            <param id="1" name="Y">600</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="778390352687521" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="729806457719788" title="AC2">
+                    <sub-events>
+                        <event-block sid="583423297497580">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="770738568393658" type="Touch" />
+                                <condition id="4" name="Is touching object" sid="819700332380909" type="Touch">
+                                    <param id="0" name="Object">m2_1_themostat</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-14" name="Toggle boolean" sid="753569365642668" type="m2_1_themostat">
+                                    <param id="0" name="Instance variable">power</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="503276886080900">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="246091785589652" type="m2_1_themostat">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Subtract from" sid="935932271327623" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-16" name="Set opacity" sid="224154484012941" type="m2_1_ACLight">
+                                            <param id="0" name="Opacity">100</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="114606151311191" type="m2_1_AC">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="723868746268247" type="Audio">
+                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                        <action id="22" name="Set paused" sid="720166593103651" type="Audio">
+                                            <param id="0" name="Tag">&quot;AC&quot;</param>
+                                            <param id="1" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="491876332827715">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="473260570744665" type="m2_1_themostat">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="737480779358981" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-16" name="Set opacity" sid="312676862300092" type="m2_1_ACLight">
+                                            <param id="0" name="Opacity">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="494184718448950" type="m2_1_AC">
+                                            <param id="0" name="Animation">&quot;Animation2&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="167712585071295" type="Audio">
+                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                        <action id="22" name="Set paused" sid="635564183065237" type="Audio">
+                                            <param id="0" name="Tag">&quot;AC&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="918704186196042" title="Tv Movement2">
+            <sub-events>
+                <event-block sid="566729251973325">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="869150616739642" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="614873916598399" type="m2_1_wires">
+                            <param id="0" name="Object">m2_1_wires</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="190454791336615" type="m2_1_plugHole">
+                            <param id="0" name="Object">m2_1_wires</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="904266484393129" type="m2_1_anchor">
+                            <param id="0" name="Object">m2_1_wires</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="649985969617642">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="646379364817060" type="System">
+                                    <param id="0" name="Count">25</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="504780867332737" type="System">
+                                    <param id="0" name="Object to create">m2_1_wire1</param>
+                                    <param id="1" name="Layer">&quot;Layer 0&quot;</param>
+                                    <param id="2" name="X">835+(loopindex+1)*(80/25)</param>
+                                    <param id="3" name="Y">730+(loopindex+1)*(30/25)</param>
+                                </action>
+                                <action behavior="Physics" id="23" name="Enable/disable collisions" sid="108039412901119" type="m2_1_wires">
+                                    <param id="0" name="Object">m2_1_wires</param>
+                                    <param id="1" name="State">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="392564515641944" type="m2_1_wire1">
+                                    <param id="0" name="Instance variable">number</param>
+                                    <param id="1" name="Value">loopindex+1</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="714569951006525" type="m2_1_wire1">
+                                    <param id="0" name="Angle">290</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="349771042843022" type="System">
+                                    <param id="0" name="Variable">m2_1_wireChecker</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-29" name="Move to object" sid="902388756256084" type="m2_1_wire1">
+                                    <param id="0" name="Where">1</param>
+                                    <param id="1" name="Object">m2_1_Tv</param>
+                                </action>
+                                <action id="-29" name="Move to object" sid="868001074273453" type="m2_1_wire1">
+                                    <param id="0" name="Where">1</param>
+                                    <param id="1" name="Object">m2_1_plugHole</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="766190559890622">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="157606329224303" type="System">
+                            <param id="0" name="Object">m2_1_wire1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="187576394346952" type="System">
+                            <param id="0" name="Variable">m2_1_wireChecker</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">25</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="924578471317153" type="System">
+                            <param id="0" name="Variable">m2_1_wireChecker</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">50</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="752373683289732" type="System">
+                            <param id="0" name="Variable">m2_1_wireChecker</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="735084549921664">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="659488265486203" type="m2_1_wire1">
+                                    <param id="0" name="Instance variable">number</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="11" name="Create revolute joint" sid="829129431883540" type="m2_1_wire1">
+                                    <param id="0" name="This image point">0</param>
+                                    <param id="1" name="Object">m2_1_plugHole</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="805016388985269">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="115655379352539" type="m2_1_wire1">
+                                    <param id="0" name="Instance variable">number</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">25</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="11" name="Create revolute joint" sid="107961739449188" type="m2_1_wire1">
+                                    <param id="0" name="This image point">0</param>
+                                    <param id="1" name="Object">m2_1_anchor</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="502360235302606">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="832699167433498" type="m2_1_wires">
+                                    <param id="0" name="Instance variable">number</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">m2_1_wire1.number-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="22" name="Create limited revolute joint" sid="731810068507455" type="m2_1_wire1">
+                                    <param id="0" name="This image point">0</param>
+                                    <param id="1" name="Object">m2_1_wires</param>
+                                    <param id="2" name="Lower angle">0</param>
+                                    <param id="3" name="Upper angle">360</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="587338575221110">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="634661136159160" type="m2_1_wires">
+                                    <param id="0" name="Instance variable">number</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">m2_1_wire1.number-2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="22" name="Create limited revolute joint" sid="457421707275597" type="m2_1_wire1">
+                                    <param id="0" name="This image point">0</param>
+                                    <param id="1" name="Object">m2_1_wires</param>
+                                    <param id="2" name="Lower angle">0</param>
+                                    <param id="3" name="Upper angle">360</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="485819123727411">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="353098250449950" type="m2_1_wires">
+                                    <param id="0" name="Instance variable">number</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">m2_1_wire1.number+1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="22" name="Create limited revolute joint" sid="875261632674502" type="m2_1_wire1">
+                                    <param id="0" name="This image point">0</param>
+                                    <param id="1" name="Object">m2_1_wires</param>
+                                    <param id="2" name="Lower angle">0</param>
+                                    <param id="3" name="Upper angle">360</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="907257197227011">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="397633176766642" type="System">
+                            <param id="0" name="Variable">m2_1_wireChecker</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">51</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="621990481443273" type="m2_1_Tv">
+                            <param id="0" name="X">1000</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="808101959490846" type="System">
+                            <param id="0" name="Variable">m2_1_wireChecker</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="229322904712430">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="726051156935669" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="299160613640834" type="m2_1_anchor">
+                            <param id="0" name="X">m2_1_Tv.X-195</param>
+                            <param id="1" name="Y">m2_1_Tv.Y+25</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="450462107709295">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="898617509268238" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="705649507670157" type="m2_1_TvLight">
+                            <param id="0" name="X">m2_1_Tv.X+187</param>
+                            <param id="1" name="Y">m2_1_Tv.Y+85</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="815700636274592">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="390373756568857" type="Touch">
+                            <param id="0" name="Object">m2_1_Tv</param>
+                        </condition>
+                        <condition id="2" name="Is in touch" sid="766441103796436" type="Touch" />
+                        <condition id="-1" name="Compare X" sid="979851908006685" type="m2_1_Tv">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">1000</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="343859569531051" type="m2_1_Tv">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">1080</param>
+                        </condition>
+                        <condition disabled="1" id="-14" name="Compare variable" sid="476660148029944" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="436324878240227" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="920465027680472" type="System">
+                            <param id="0" name="Variable">m2_1_PrevDragMouseX</param>
+                            <param id="1" name="Value">m2_1_DragMouseX</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="568594146182307" type="System">
+                            <param id="0" name="Variable">m2_1_DragMouseX</param>
+                            <param id="1" name="Value">Touch.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="687372840698761" type="System">
+                            <param id="0" name="Variable">m2_1_DiffX</param>
+                            <param id="1" name="Value">m2_1_DragMouseX-m2_1_PrevDragMouseX</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="653042654736276">
+                    <conditions>
+                        <condition id="0" name="On any touch start" sid="868348972587720" type="Touch" />
+                        <condition id="-1" name="Compare X" sid="884940723353009" type="m2_1_Tv">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">1000</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="961590342749272" type="m2_1_Tv">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">1080</param>
+                        </condition>
+                        <condition disabled="1" id="-14" name="Compare variable" sid="263877493450050" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="106279936672985" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="736998818538722" type="System">
+                            <param id="0" name="Variable">m2_1_PrevDragMouseX</param>
+                            <param id="1" name="Value">Touch.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="489315567605089" type="System">
+                            <param id="0" name="Variable">m2_1_DragMouseX</param>
+                            <param id="1" name="Value">Touch.X</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="548724329515323">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="860020785381558" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="855578397428801">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="587874863460861" type="System">
+                                    <param id="0" name="Variable">m2_1_DiffX</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="985276407749931" type="m2_1_Tv">
+                                    <param id="0" name="X">lerp(m2_1_Tv.X,m2_1_Tv.X+m2_1_DiffX,0.75)</param>
+                                </action>
+                                <action id="-11" name="Subtract from" sid="186794792440459" type="System">
+                                    <param id="0" name="Variable">m2_1_DiffX</param>
+                                    <param id="1" name="Value">m2_1_DiffX/3</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="757411369138139">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="377309863146978" type="m2_1_Tv">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">1000</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="221045529027850" type="m2_1_Tv">
+                                    <param id="0" name="X">1000</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="646618597563019">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="365449565067864" type="m2_1_Tv">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">1080</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="689928531018829" type="m2_1_Tv">
+                                    <param id="0" name="X">1080</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="142155686941462" title="sound">
+            <sub-events>
+                <event-block sid="368814245452393">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="681725532747047" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-41" name="Wait for signal" sid="588669102512821" type="System">
+                            <param id="0" name="Tag">&quot;m2_1_init&quot;</param>
+                        </action>
+                        <action id="0" name="Play" sid="784268944241773" type="Audio">
+                            <param id="0" name="Audio file">sfx_AC</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">-15</param>
+                            <param id="1" name="Tag (optional)">&quot;AC&quot;</param>
+                        </action>
+                        <action id="0" name="Play" sid="708084083494206" type="Audio">
+                            <param id="0" name="Audio file">sfx_waterheater</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;Heat&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="755845086516778">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="277107708776738" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="488748991060985">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="300649638626413" type="Touch">
+                                    <param id="0" name="Object">m2_1_BG</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="148079420049139" type="Touch">
+                                    <param id="0" name="Object">m2_1_plugHole</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="556398777479209" type="Touch">
+                                    <param id="0" name="Object">m2_1_door</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="588645435770263" type="Touch">
+                                    <param id="0" name="Object">m2_1_waterHeater</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="351227556154070" type="Touch">
+                                    <param id="0" name="Object">m2_1_Tv</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="675562508886105" type="Touch">
+                                    <param id="0" name="Object">m2_1_closetDoor</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="609238275231609" type="Touch">
+                                    <param id="0" name="Object">m2_1_lightSwitch</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="285396997223380" type="Touch">
+                                    <param id="0" name="Object">m2_1_themostat</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="583119485283511" type="Touch">
+                                    <param id="0" name="Object">m2_1_key</param>
+                                </condition>
+                                <condition id="4" inverted="1" name="Is touching object" sid="129539661399551" type="Touch">
+                                    <param id="0" name="Object">m2_1_lock</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="608734168944823" type="Audio">
+                                    <param id="0" name="Audio file">sfx_click_unclickable_obj01</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;nuu&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="175100038647823">
+                            <conditions>
+                                <condition id="17" name="On tap object" sid="383152784506035" type="Touch">
+                                    <param id="0" name="Object">m2_1_closetDoor</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="388389070612057" type="m2_1_key">
+                                    <param id="0" name="Instance variable">pickup</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="583421071131782" type="Audio">
+                                    <param id="0" name="Audio file">sfx_doorlock</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">100</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="865419193805659">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="209770165754342" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-41" name="Wait for signal" sid="474422937856711" type="System">
+                            <param id="0" name="Tag">&quot;m2_1_init&quot;</param>
+                        </action>
+                        <action id="-41" name="Wait for signal" sid="808968886803004" type="System">
+                            <param id="0" name="Tag">&quot;baeaeaeh&quot;</param>
+                        </action>
+                        <action id="0" name="Play" sid="324723976423684" type="Audio">
+                            <param id="0" name="Audio file">sfx_bus_horn</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="122768367457246" title="end2">
+            <sub-events>
+                <event-block sid="319426529948030">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="726884448367593" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-41" name="Wait for signal" sid="292572818948359" type="System">
+                            <param id="0" name="Tag">&quot;m2_1_init&quot;</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="832763959242964" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_plugHole</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="922770651612262" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_Tv</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="634082503467402" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_TVPlug</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="700452045081193" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_TvWire</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="321983315368946" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_TvWires</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="235612795777880" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_anchor</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Physics" id="23" name="Enable/disable collisions" sid="296416837923712" type="m2_1_endMenu">
+                            <param id="0" name="Object">m2_1_wires</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="113970126594428">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="431702023379631" type="System">
+                            <param id="0" name="Variable">m2_1_win</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-18" name="Set layer opacity" sid="738338739793941" type="System">
+                            <param id="0" name="Layer">1</param>
+                            <param id="1" name="Opacity">100</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="796153991432500" type="m2_1_endHolder" />
+                        <action id="-9" name="Destroy" sid="424750794173158" type="m2_1_dpprCrack" />
+                        <action id="-9" name="Destroy" sid="392314725271041" type="m2_1theLight" />
+                        <action id="-16" name="Set opacity" sid="239140651706661" type="m2_1_gameover">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="503386038126021" type="m2_1_endMenu">
+                            <param id="0" name="X">960</param>
+                            <param id="1" name="Y">600</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="618435215374052" type="m2_1_timer" />
+                        <action id="-9" name="Destroy" sid="488414581114522" type="m2_1_hint" />
+                        <action id="-9" name="Destroy" sid="249137626560161" type="m2_1_hint2" />
+                        <action id="-9" name="Destroy" sid="893553483223434" type="m2_1_hint3" />
+                        <action id="-9" name="Destroy" sid="300258368959262" type="m2_1_hint4" />
+                        <action id="33" name="Stop all" sid="533819129417704" type="Audio" />
+                        <action id="-10" name="Add to" sid="458842418936627" type="System">
+                            <param id="0" name="Variable">m2_1_blinkCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="391358888832340" type="m2_1_tutText" />
+                        <action id="-9" name="Destroy" sid="533437114584479" type="m2_1_tutText2" />
+                        <action id="-3" name="Set position" sid="566874166199222" type="m2_1_endDescription">
+                            <param id="0" name="X">m2_1_endMenu.X</param>
+                            <param id="1" name="Y">m2_1_endMenu.Y</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="993935498901276" type="m2_1_exit">
+                            <param id="0" name="X">m2_1_endMenu.X-300</param>
+                            <param id="1" name="Y">m2_1_endMenu.Y+200</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="952971427167460" type="m2_1_retry">
+                            <param id="0" name="X">m2_1_endMenu.X+300</param>
+                            <param id="1" name="Y">m2_1_endMenu.Y+200</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="497682640052617">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="373083207285712" type="System">
+                                    <param id="0" name="Variable">m2_1_score</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="607312285506873">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="624304334122885" type="m2_1_lightSwitch">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="227176781217362" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="596284273249078">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="571797311007650" type="m2_1_Tv">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="331078220604702" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="832242096117689">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="891775878170977" type="m2_1_waterHeater">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="326734251471611" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="119564398318482">
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="575876670541219" type="m2_1_themostat">
+                                            <param id="0" name="Instance variable">power</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="801678762413260" type="System">
+                                            <param id="0" name="Variable">m2_1_score</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="985293154446553">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="877588569247607" type="System">
+                                    <param id="0" name="Variable">m2_1_win</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="260752294481536" type="m2_1_endDescription">
+                                    <param id="0" name="Text">&quot;Time&apos;s Up&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="164117374476985">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="532399344280154" type="System">
+                                    <param id="0" name="Variable">m2_1_score</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="956809747821325" type="m2_1_retry" />
+                                <action id="-1" name="Set X" sid="446363198990616" type="m2_1_exit">
+                                    <param id="0" name="X">960</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="280184173316241">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="988393752481299" type="System">
+                                    <param id="0" name="Variable">m2_1_score</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="479779800034551">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="915678387306034" type="System">
+                                    <param id="0" name="Variable">m2_1_score</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="506605696242248">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="876640350455554" type="System">
+                                    <param id="0" name="Variable">m2_1_score</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="726001203873045" type="m2_1_endDescription">
+                                    <param id="0" name="Text">newline&amp;&quot;You are still wasting energy.  Try again to improve your score!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-group description="" sid="725231947495766" title="retry2">
+                            <sub-events>
+                                <event-block sid="164664839745545">
+                                    <conditions>
+                                        <condition id="17" name="On tap object" sid="800148690560527" type="Touch">
+                                            <param id="0" name="Object">m2_1_retry</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="846716919458822" type="Function">
+                                            <param id="0" name="Name">&quot;GG Reload Game&quot;</param>
+                                            <param id="1" name="Parameter {n}">max(m2_1_score - 1, 0){###}&quot;M2_1 Restart&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="818979972112724">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="428361461560726" type="Touch">
+                                            <param id="0" name="Object">m2_1_retry</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="336814772543247" type="m2_1_retry">
+                                            <param id="0" name="Animation">&quot;Animation2&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="510756896336953">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="901362689117462" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="858758870829683" type="m2_1_retry">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="691597671057463">
+                                    <conditions>
+                                        <condition id="17" name="On tap object" sid="330020353669334" type="Touch">
+                                            <param id="0" name="Object">m2_1_exit</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="233636070556968" type="Function">
+                                            <param id="0" name="Name">&quot;GG Exit Game&quot;</param>
+                                            <param id="1" name="Parameter {n}">max(m2_1_score - 1, 0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="385954386680975">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="840413206419886" type="Touch">
+                                            <param id="0" name="Object">m2_1_exit</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="835244419275102" type="m2_1_exit">
+                                            <param id="0" name="Animation">&quot;Animation2&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="341971621502001">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="378705350324092" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="847868902554037" type="m2_1_exit">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="762035370991452" title="m2_1_Tutorial">
+            <sub-events>
+                <event-block sid="889198862756750">
+                    <conditions>
+                        <condition id="14" name="On tap" sid="346799840157594" type="Touch" />
+                        <condition id="-14" name="Compare variable" sid="453179353424308" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="403211393050800" type="m2_1_tutText">
+                            <param id="0" name="Text">&quot;Tap to interact with objects.&quot;</param>
+                        </action>
+                        <action id="4" name="Set font color" sid="240097450894906" type="m2_1_tutText">
+                            <param id="0" name="Color">rgb(255,255,255)</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="508630897315212" type="m2_1_tuttap">
+                            <param id="0" name="Opacity">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="759764039523299" type="m2_1_tutLight">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="919089089442128" type="System">
+                            <param id="0" name="Seconds">0.1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="354390350286458" type="m2_1_tutText3" />
+                        <action id="-10" name="Add to" sid="817517256075431" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="939840101869983">
+                    <conditions>
+                        <condition id="17" name="On tap object" sid="369867974061414" type="Touch">
+                            <param id="0" name="Object">m2_1_lightSwitch</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="232183311332520" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="575097502457556" type="m2_1_tutText">
+                            <param id="0" name="Text">&quot;Anything with a red light is still using electricity. Turn the light back on.&quot;</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="194024353416301" type="m2_1_lightSwitch">
+                            <param id="0" name="Instance variable">power</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="512726280143050" type="m2_1_tutLight">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="384267017410525" type="System">
+                            <param id="0" name="Seconds">0.1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="343748167531590" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="214009396740134" type="System">
+                            <param id="0" name="Variable">m2_1_blinkCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="979822663606403">
+                    <conditions>
+                        <condition id="17" name="On tap object" sid="903250188331046" type="Touch">
+                            <param id="0" name="Object">m2_1_lightSwitch</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="404342979919535" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="903959277738191" type="System">
+                            <param id="0" name="Variable">m2_1_blinkCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="250307264626527" type="m2_1_tutText">
+                            <param id="0" name="Text">&quot;Certain objects can be dragged.&quot;</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="185373586849230" type="m2_1_lightSwitch">
+                            <param id="0" name="Instance variable">power</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="909302155187578" type="m2_1_tutLight">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="173114638583834" type="m2_1_tutLight">
+                            <param id="0" name="X">1000</param>
+                            <param id="1" name="Y">740</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="717837468701637" type="m2_1_tutLight">
+                            <param id="0" name="Width">810</param>
+                            <param id="1" name="Height">460</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="877712888626233" type="System">
+                            <param id="0" name="Seconds">0.1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="606179318642969" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="397457755218637">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="136643030217885" type="m2_1_Tv">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">1065</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="456823988760020" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="650657020832063" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="567464969355514" type="m2_1_tutText">
+                            <param id="0" name="Text">&quot;Turn off and unplug as many electronics as you can.&quot;</param>
+                        </action>
+                        <action id="4" name="Set font color" sid="571213517867246" type="m2_1_tutText">
+                            <param id="0" name="Color">rgb(0,0,0)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="269064393413357" type="System">
+                            <param id="0" name="Variable">m2_1_blinkCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-18" name="Set layer opacity" sid="854108530491623" type="System">
+                            <param id="0" name="Layer">&quot;tutorial&quot;</param>
+                            <param id="1" name="Opacity">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="821556653049184" type="m2_1_tutLight">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="545746744176553" type="System">
+                            <param id="0" name="Seconds">0.1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="376884582289023" type="System">
+                            <param id="0" name="Variable">m2_1_tutPage</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="402223388964383" type="System">
+                            <param id="0" name="Variable">m2_1_playing</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="761019420923039">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="131073659933084" type="System">
+                            <param id="0" name="Variable">m2_1_score</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="927374185011050" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="478105465911898" type="m2_1_tutText">
+                            <param id="0" name="Text">&quot;Leave through door.&quot;</param>
+                        </action>
+                        <action id="-18" name="Set layer opacity" sid="170849389275453" type="System">
+                            <param id="0" name="Layer">&quot;tutorial&quot;</param>
+                            <param id="1" name="Opacity">100</param>
+                        </action>
+                        <action id="4" name="Set font color" sid="560400179405793" type="m2_1_tutText">
+                            <param id="0" name="Color">rgb(255,255,255)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="151247537247698" type="System">
+                            <param id="0" name="Variable">m2_1_blinkCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="335116088810327">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="356588297574611" type="System">
+                            <param id="0" name="Interval (seconds)">0.4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" sid="231197473710162" type="m2_1_blink">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="775822064397709" type="System">
+                            <param id="0" name="Seconds">0.2</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="417769747245654" type="m2_1_blink">
+                            <param id="0" name="Opacity">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="968794472136014">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="783369391285843" type="System">
+                            <param id="0" name="Object">m2_1_blink</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="317928130642502">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="216424868150540" type="m2_1_blink">
+                                    <param id="0" name="Instance variable">numba</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">m2_1_blinkCount</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="863006184410364" type="m2_1_blink">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="721997563238162">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="898640366625174" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="593366390618017" type="m2_1_blink">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="183695401809427">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="403640050238504" type="m2_1_blink">
+                                    <param id="0" name="Instance variable">numba</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="320141906641842" type="m2_1_blink">
+                                    <param id="0" name="X">m2_1_Tv.X</param>
+                                    <param id="1" name="Y">m2_1_Tv.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="395138280364668">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="830588830547211" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="789419205990605">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="362331642152088" type="m2_1_lightSwitch">
+                            <param id="0" name="Instance variable">power</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" sid="918065500024385" type="m2_1theLight">
+                            <param id="0" name="Opacity">95</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="713137283463178" type="m2_1_dpprCrack">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="763692691253163" type="m2_1_lightSwitch">
+                            <param id="0" name="Animation">&quot;Animation2&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="987160262075937" type="m2_1_tutText2">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="184257691352456">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="761040871940117" type="m2_1_lightSwitch">
+                            <param id="0" name="Instance variable">power</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" sid="568680652005872" type="m2_1theLight">
+                            <param id="0" name="Opacity">0</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="158048142070542" type="m2_1_dpprCrack">
+                            <param id="0" name="Opacity">10</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="975347408779158" type="m2_1theLight">
+                            <param id="0" name="X">960</param>
+                            <param id="1" name="Y">600</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="219083247159099" type="m2_1_lightSwitch">
+                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="252110461364440" type="m2_1_tutText2">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="163558769125825" title="m2_1 Restart Game">
+            <sub-events>
+                <event-block sid="361784390380864">
+                    <conditions>
+                        <condition id="0" name="On function" sid="845728701087441" type="Function">
+                            <param id="0" name="Name">&quot;M2_1 Restart&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="930110622290369" type="System">
+                            <param id="0" name="Variable">GG_hi</param>
+                            <param id="1" name="Value">&quot;546456&quot;</param>
+                        </action>
+                        <action id="-26" name="Restart layout" sid="778280071728634" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="929355364724916">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="948708621060464" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="635800394475627" type="m2_tutLite">
+                    <param id="0" name="Object">m2_1_TvLight</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

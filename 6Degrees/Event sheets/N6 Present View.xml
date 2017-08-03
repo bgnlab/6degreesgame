@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>N6 Present View</name>
+    <events>
+        <include>GG Scores and Levels</include>
+        <include>N6 Map Transitions</include>
+        <variable constant="0" name="N6_Clicker_Timer" sid="931006204960019" static="0" type="number">0</variable>
+        <variable constant="0" name="N6_PresentTemperature" sid="606254854442624" static="0" type="number">1</variable>
+        <event-block sid="410060440315229">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="726797802824413" type="System" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="846002179871313" type="N6_Thermometer">
+                    <param id="0" name="Animation">&quot;0C&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="537759382587617" type="N6_TransitionCalendar">
+                    <param id="0" name="Animation">&quot;present&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="526840482672658" type="N6_Thermometer">
+                    <param id="0" name="Mode">0</param>
+                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block any="1" sid="177656437374172">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="815213084271981" type="System">
+                            <param id="0" name="Variable">N6_PreviousMapLayout</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;N6 Future View&quot;</param>
+                        </condition>
+                        <condition id="0" name="Compare value" sid="876881584194450" type="GG_State">
+                            <param id="0" name="Key">&quot;exit from game&quot;</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="680934378049213" type="Function">
+                            <param id="0" name="Name">&quot;N6 Transition In&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="0" name="Play" sid="196528123233213" type="Audio">
+                            <param id="0" name="Audio file">bgm_2</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;bgm&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="822174715580317" type="System">
+                            <param id="0" name="Variable">N6_PreviousMapLayout</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="1" name="Set key" sid="771322084554941" type="GG_State">
+                            <param id="0" name="Key">&quot;exit from game&quot;</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="612255170809621">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="516906219200777" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set layer visible" sid="986909826500649" type="System">
+                            <param id="0" name="Layer">&quot;Transition&quot;</param>
+                            <param id="1" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="486814725524203">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="528843615360586" type="System">
+                            <param id="0" name="Variable">N6_Clicker_Timer</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-4" name="Set layer visible" sid="372571138440617" type="System">
+                            <param id="0" name="Layer">&quot;Clickers&quot;</param>
+                            <param id="1" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="181688994204036" title="N6 Clickers">
+            <sub-events>
+                <variable constant="1" name="N6_CLICKER_DELAY" sid="458844889644376" static="0" type="number">4</variable>
+                <event-block sid="209393093885723">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="173017457328467" type="System">
+                            <param id="0" name="Variable">N6_Clicker_Timer</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">N6_CLICKER_DELAY</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="803145762964168" type="System">
+                            <param id="0" name="Variable">N6_Clicker_Timer</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="229471154034955">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="437597970803541" type="System">
+                                    <param id="0" name="Variable">N6_Clicker_Timer</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">N6_CLICKER_DELAY</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-4" name="Set layer visible" sid="191782344688282" type="System">
+                                    <param id="0" name="Layer">&quot;Clickers&quot;</param>
+                                    <param id="1" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <comment>Opening a Region</comment>
+        <event-block sid="487788977395882">
+            <conditions>
+                <condition id="17" name="On tap object" sid="185351199210951" type="Touch">
+                    <param id="0" name="Object">N6_Region</param>
+                </condition>
+                <condition id="-14" inverted="1" name="Compare variable" sid="914585778010850" type="System">
+                    <param id="0" name="Variable">N6_Transitioning</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="861210717797127" type="Audio">
+                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-15</param>
+                    <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="615483289231383" type="System">
+                    <param id="0" name="Variable">GG_Selected_Region</param>
+                    <param id="1" name="Value">N6_Region.RegionNumber</param>
+                </action>
+                <action id="-25" name="Go to layout (by name)" sid="296375357682415" type="System">
+                    <param id="0" name="Layout">&quot;N6 Level Select&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Switching to the Future</comment>
+        <event-block sid="940771626282696">
+            <conditions>
+                <condition id="17" name="On tap object" sid="163530752901896" type="Touch">
+                    <param id="0" name="Object">N6_ToFuture</param>
+                </condition>
+                <condition id="-14" inverted="1" name="Compare variable" sid="505173885650271" type="System">
+                    <param id="0" name="Variable">N6_Transitioning</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="667812569515298" type="Audio">
+                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-15</param>
+                    <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                </action>
+                <action id="6" name="Stop" sid="892999311469344" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                </action>
+                <action id="0" name="Call function" sid="920040200529562" type="Function">
+                    <param id="0" name="Name">&quot;N6 Transition To&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;N6 Future View&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="976707810527781" type="System">
+                    <param id="0" name="Seconds">0.5</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="668467567372623" type="N6_Thermometer">
+                    <param id="0" name="Mode">1</param>
+                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Stats Screen</comment>
+        <event-block sid="900105016940536">
+            <conditions>
+                <condition id="1" name="On any touch end" sid="264594304557869" type="Touch" />
+                <condition id="4" name="Is touching object" sid="743025904696280" type="Touch">
+                    <param id="0" name="Object">N6_ToStats</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="731491727251169" type="Audio">
+                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-15</param>
+                    <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="412471311948339" type="System">
+                    <param id="0" name="Layout">Score Screen</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

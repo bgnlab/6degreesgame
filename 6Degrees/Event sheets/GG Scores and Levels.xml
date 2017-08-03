@@ -1,0 +1,1760 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>GG Scores and Levels</name>
+    <events>
+        <variable constant="0" name="GG_Difficulty" sid="453214844668942" static="0" type="number">0</variable>
+        <variable constant="0" name="GG_Selected_Game" sid="396281275119535" static="0" type="number">-1</variable>
+        <variable constant="0" name="GG_After_LS" sid="802643025859519" static="0" type="text"></variable>
+        <variable constant="0" name="GG_Callback" sid="401688082894111" static="0" type="text"></variable>
+        <variable comment="Debug Stuff" constant="0" name="GG_hi" sid="119982164244513" static="0" type="text"></variable>
+        <variable constant="0" name="GG_Selected_Region" sid="834754807406336" static="0" type="number">0</variable>
+        <variable comment="Either &apos;CASUAL&apos; or &apos;STORY&apos;" constant="1" name="GG_GAME_VERSION" sid="661238395450024" static="0" type="text">CASUAL</variable>
+        <variable comment="1 for debug. Turn off when game ships" constant="1" name="GG_DEBGU" sid="164960728268705" static="0" type="number">0</variable>
+        <event-group description="" sid="888092148056112" title="GG Initializing Data">
+            <sub-events>
+                <event-block sid="100060445461913">
+                    <conditions>
+                        <condition id="0" name="On function" sid="340401043164049" type="Function">
+                            <param id="0" name="Name">&quot;GG Initialize Data&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="644260469200207" type="System">
+                            <param id="0" name="Variable">GG_After_LS</param>
+                            <param id="1" name="Value">&quot;Start &quot; &amp; Function.Param(0)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Initialize State</comment>
+                        <event-block sid="458399479010082">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="599522426763197" type="System">
+                                    <param id="0" name="Variable">GG_GAME_VERSION</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;CASUAL&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Add key" sid="768504855342997" type="GG_State">
+                                    <param id="0" name="Key">&quot;difficulty&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="844158907084633" type="GG_State">
+                                    <param id="0" name="Key">&quot;exit from game&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="816940487649781" type="GG_State">
+                                    <param id="0" name="Key">&quot;tutorial finished&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="248792698653765" type="GG_State">
+                                    <param id="0" name="Key">&quot;selected game&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="819527225374748" type="GG_State">
+                                    <param id="0" name="Key">&quot;total score&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="436243414876713" type="GG_State">
+                                    <param id="0" name="Key">&quot;trigger animals&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="727758283959044">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="648678137657739" type="System">
+                                    <param id="0" name="Variable">GG_GAME_VERSION</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;STORY&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Add key" sid="501175085675812" type="GG_State">
+                                    <param id="0" name="Key">&quot;difficulty&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="553770053203146" type="GG_State">
+                                    <param id="0" name="Key">&quot;exit from game&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="675533637987602" type="GG_State">
+                                    <param id="0" name="Key">&quot;tutorial finished&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="382693704321873" type="GG_State">
+                                    <param id="0" name="Key">&quot;selected game&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Add key" sid="304624125692322" type="GG_State">
+                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                    <param id="1" name="Value">6</param>
+                                </action>
+                                <action id="0" name="Add key" sid="688978178781145" type="GG_State">
+                                    <param id="0" name="Key">&quot;trigger cutscenes&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Save to localstorage</comment>
+                        <event-block sid="693003290817485">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Set item" sid="123757116490514" type="LocalStorage">
+                                    <param id="0" name="Key">&quot;ggstate&quot;</param>
+                                    <param id="1" name="Value">GG_State.AsJSON</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="872157182443102" title="GG Setting/Getting Data Synchronously">
+            <sub-events>
+                <event-block sid="610725808576361">
+                    <conditions>
+                        <condition id="15" name="On all sets complete" sid="227767314050231" type="LocalStorage" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="765667060688582" type="Function">
+                            <param id="0" name="Name">GG_After_LS</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="523338969906679">
+                    <conditions>
+                        <condition id="16" name="On all gets complete" sid="716387534933889" type="LocalStorage" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="340616868728980" type="Function">
+                            <param id="0" name="Name">GG_After_LS</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="592690023303973" title="GG Fetching Localstorage">
+            <sub-events>
+                <comment>function (callback)</comment>
+                <event-block sid="777997801355679">
+                    <conditions>
+                        <condition id="0" name="On function" sid="300832160142809" type="Function">
+                            <param id="0" name="Name">&quot;GG Fetch State&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="985926616781494" type="System">
+                            <param id="0" name="Variable">GG_Callback</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="894577682821322" type="System">
+                            <param id="0" name="Variable">GG_After_LS</param>
+                            <param id="1" name="Value">&quot;GG Fetch State 2&quot;</param>
+                        </action>
+                        <action id="1" name="Get item" sid="559947540038215" type="LocalStorage">
+                            <param id="0" name="Key">&quot;ggstate&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>After Save</comment>
+                <event-block sid="782704157067383">
+                    <conditions>
+                        <condition id="0" name="On function" sid="647069415603607" type="Function">
+                            <param id="0" name="Name">&quot;GG Fetch State 2&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Load" sid="152004088318769" type="GG_State">
+                            <param id="0" name="JSON">LocalStorage.ItemValue</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="609280908468044" type="System">
+                            <param id="0" name="Variable">GG_Difficulty</param>
+                            <param id="1" name="Value">GG_State.Get(&quot;difficulty&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="599573445150359" type="System">
+                            <param id="0" name="Variable">GG_Selected_Game</param>
+                            <param id="1" name="Value">GG_State.Get(&quot;selected game&quot;)</param>
+                        </action>
+                        <action id="0" name="Call function" sid="738602492763552" type="Function">
+                            <param id="0" name="Name">GG_Callback</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="432480032320024" title="GG Load Minigame">
+            <sub-events>
+                <event-block sid="563500833904185">
+                    <conditions>
+                        <condition id="0" name="On function" sid="932717544614163" type="Function">
+                            <param id="0" name="Name">&quot;GG Select Game&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="721367753922522" type="System">
+                            <param id="0" name="Variable">GG_Selected_Game</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="570934055399150" type="System">
+                            <param id="0" name="Variable">GG_Difficulty</param>
+                            <param id="1" name="Value">Function.Param(1)</param>
+                        </action>
+                        <action id="0" name="Add key" sid="591801633470147" type="GG_State">
+                            <param id="0" name="Key">&quot;difficulty&quot;</param>
+                            <param id="1" name="Value">GG_Difficulty</param>
+                        </action>
+                        <action id="0" name="Add key" sid="964316243119908" type="GG_State">
+                            <param id="0" name="Key">&quot;exit from game&quot;</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Add key" sid="453792982984056" type="GG_State">
+                            <param id="0" name="Key">&quot;tutorial finished&quot;</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Add key" sid="668143312393765" type="GG_State">
+                            <param id="0" name="Key">&quot;selected game&quot;</param>
+                            <param id="1" name="Value">GG_Selected_Game</param>
+                        </action>
+                        <action id="0" name="Add key" sid="670966118102762" type="GG_State">
+                            <param id="0" name="Key">&quot;game entry time&quot;</param>
+                            <param id="1" name="Value">time</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="491436339147724">
+                            <conditions />
+                            <actions>
+                                <action id="-4" name="Set layer visible" sid="472148658774579" type="System">
+                                    <param id="0" name="Layer">&quot;GG_Black&quot;</param>
+                                    <param id="1" name="Visibility">1</param>
+                                </action>
+                                <action behavior="Fade" id="2" name="Set fade-in time" sid="178090876966656" type="GG_Black">
+                                    <param id="0" name="Fade-in time">0</param>
+                                </action>
+                                <action behavior="Fade" id="4" name="Set fade-out time" sid="181818831772542" type="GG_Black">
+                                    <param id="0" name="Fade-out time">0</param>
+                                </action>
+                                <action behavior="Fade" id="3" name="Set wait time" sid="372506558645698" type="GG_Black">
+                                    <param id="0" name="Wait time">1</param>
+                                </action>
+                                <action behavior="Fade" id="1" name="Start fade" sid="918209069048133" type="GG_Black" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="553899874807136">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="654470595200142" type="System">
+                                    <param id="0" name="Variable">GG_After_LS</param>
+                                    <param id="1" name="Value">&quot;GG Load Game&quot;</param>
+                                </action>
+                                <action id="0" name="Set item" sid="193896136816258" type="LocalStorage">
+                                    <param id="0" name="Key">&quot;ggstate&quot;</param>
+                                    <param id="1" name="Value">GG_State.AsJSON</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Directing to Actual Game</comment>
+                <event-block sid="828370310244102">
+                    <conditions>
+                        <condition id="0" name="On function" sid="900104179355022" type="Function">
+                            <param id="0" name="Name">&quot;GG Load Game&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="33" name="Stop all" sid="718182359846678" type="Audio" />
+                    </actions>
+                    <sub-events>
+                        <comment>Game 0 -- DC Parking</comment>
+                        <event-block sid="177256462072328">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="169947992285312" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="321756650137568">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="634193072998600" type="System">
+                                            <param id="0" name="Variable">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="402936484483207" type="System">
+                                            <param id="0" name="Variable">DC_OfficialDifficulty</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="790928948258283">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="156053937243983" type="System">
+                                            <param id="0" name="Variable">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="510455482776993" type="System">
+                                            <param id="0" name="Variable">DC_OfficialDifficulty</param>
+                                            <param id="1" name="Value">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="287822649156525">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="135757077645233" type="System">
+                                            <param id="0" name="Variable">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="623889622560850" type="System">
+                                            <param id="0" name="Variable">DC_OfficialDifficulty</param>
+                                            <param id="1" name="Value">4</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Direct to layout</comment>
+                                <event-block sid="243674876057812">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="604926348767133" type="System">
+                                            <param id="0" name="Variable">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="566858539432959" type="System">
+                                            <param id="0" name="Layout">DC_Tutorial_2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="465430037280221">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="537336525224265" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="842919917539682" type="System">
+                                            <param id="0" name="Layout">DC_MainGame</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Game 1 -- M6 Food</comment>
+                        <event-block sid="468511602489857">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="747967058379928" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="893684007360577">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="476861358127873" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="969807576706811" type="System">
+                                            <param id="0" name="Layout">&quot;m6_1_tutorial&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="738323106440199">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="147335518558447" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="774018910487196" type="System">
+                                            <param id="0" name="Layout">&quot;m6_2_main(m)&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="432182704452866">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="876726804064222" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="404530953886236" type="System">
+                                            <param id="0" name="Layout">&quot;m6_3_main(h)&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Game 2 - M7 Heatlock</comment>
+                        <event-block sid="662825382046987">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="166904792555709" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-25" name="Go to layout (by name)" sid="277171282882773" type="System">
+                                    <param id="0" name="Layout">&quot;M7_HeatLock&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Game 3 - M4 Clothing</comment>
+                        <event-block sid="403414734404420">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="950565138459172" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="708929160496567">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="378845090238823" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-45" name="Reset persisted objects" sid="352822114712053" type="System" />
+                                        <action id="-21" name="Reset global variables" sid="205013205381196" type="System" />
+                                        <action id="-2" name="Go to layout" sid="884118490224364" type="System">
+                                            <param id="0" name="Layout">m4_TutorialLevel</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="967840670745960">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="436727976945254" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="226917299793778" type="System">
+                                            <param id="0" name="Layout">m4_GameLayout</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Game 4 -- M1 Tire Pressure</comment>
+                        <event-block sid="467873870054295">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="936498097708990" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="684611151703859">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="652873813344008" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="254142963519399" type="System">
+                                            <param id="0" name="Layout">&quot;m1_InteractiveTutorial&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="909034056672930">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="531564778461038" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="887113115966424" type="System">
+                                            <param id="0" name="Layout">&quot;m1_GameLayout&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Game 5 -- MY Frogger</comment>
+                        <event-block sid="222630852809354">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="927273885691694" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">5</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="509391687048274">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="302656952530421" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="595784627174558" type="System">
+                                            <param id="0" name="Layout">My TutorialLayout</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="671203433506737">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="920239399783429" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="851149402724524" type="System">
+                                            <param id="0" name="Layout">My GameLayout</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="564812317092791">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="848006978014591" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="755638294938625" type="System">
+                                            <param id="0" name="Layout">My GameLayoutHard</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Game 6 -- M2 Escape Room</comment>
+                        <event-block sid="523004365712254">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="174025718108488" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">6</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="773193125138445">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="556212877277663" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="358792186370176" type="System">
+                                            <param id="0" name="Layout">&quot;m2_1_main(e)&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="394803463335862">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="704501957377189" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="271039576842251" type="System">
+                                            <param id="0" name="Layout">&quot;m2_2_main&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="603556186931601">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="860761011498620" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="532345898272853" type="System">
+                                            <param id="0" name="Layout">&quot;m2_3_main&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Game 7 -- MX Spending Game</comment>
+                        <event-block sid="536698396122290">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="932214542653983" type="System">
+                                    <param id="0" name="First value">GG_Selected_Game</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">7</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="950992448522037">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="303112649609056" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="720255301856134" type="System">
+                                            <param id="0" name="Layout">&quot;mx_1_tutorial&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="714483575625076">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="161038194696825" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="877811388516233" type="System">
+                                            <param id="0" name="Layout">&quot;mx_2_main(m)&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="514105427868578">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="147179556418785" type="System">
+                                            <param id="0" name="First value">GG_Difficulty</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="523740927415029" type="System">
+                                            <param id="0" name="Layout">&quot;mx_3_main(h)&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="535918028929740" title="GG Game Exit">
+            <sub-events>
+                <comment>Save Scores</comment>
+                <event-block sid="330380353175021">
+                    <conditions>
+                        <condition id="0" name="On function" sid="498338006400061" type="Function">
+                            <param id="0" name="Name">&quot;GG Exit Game&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="33" name="Stop all" sid="613785910707297" type="Audio" />
+                        <action id="-9" name="Set value" sid="740156154985694" type="System">
+                            <param id="0" name="Variable">GG_Selected_Game</param>
+                            <param id="1" name="Value">GG_State.Get(&quot;selected game&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="893494123937705" type="System">
+                            <param id="0" name="Variable">GG_Difficulty</param>
+                            <param id="1" name="Value">GG_State.Get(&quot;difficulty&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-group description="" sid="467252333465125" title="GG Calculate Save Data">
+                            <sub-events>
+                                <variable constant="0" name="GG_Score_String" sid="862853632978777" static="0" type="text"></variable>
+                                <variable constant="0" name="GG_Score_Key" sid="246538445241856" static="0" type="text"></variable>
+                                <event-block sid="454284670715217">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="613991499891765" type="System">
+                                            <param id="0" name="Variable">GG_Score_Key</param>
+                                            <param id="1" name="Value">&quot;game&quot; &amp; GG_Selected_Game</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="189406618587990">
+                                    <conditions>
+                                        <condition id="3" name="Has key" sid="543251459022356" type="GG_State">
+                                            <param id="0" name="Key">GG_Score_Key</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="974365259596241" type="System">
+                                            <param id="0" name="Variable">GG_Score_String</param>
+                                            <param id="1" name="Value">GG_State.Get(GG_Score_Key)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="400597953594988">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="394899910265639" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="592377540093328" type="System">
+                                            <param id="0" name="Variable">GG_Score_String</param>
+                                            <param id="1" name="Value">&quot;0 0 0&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="706903812727005">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="330082064676065" type="System">
+                                            <param id="0" name="First value">int(tokenat(GG_Score_String, GG_State.Get(&quot;difficulty&quot;), &quot; &quot;))</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Function.Param(0)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="973119130001811">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="568319675848229" type="System">
+                                                    <param id="0" name="Variable">GG_Difficulty</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="753440721654578" type="System">
+                                                    <param id="0" name="Variable">GG_Score_String</param>
+                                                    <param id="1" name="Value">Function.Param(0) &amp; &quot; &quot; &amp; tokenat(GG_Score_String, 1, &quot; &quot;) &amp; &quot; &quot; &amp; tokenat(GG_Score_String, 2, &quot; &quot;) </param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="497324818402736">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="906418306112264" type="System" />
+                                                <condition id="-14" name="Compare variable" sid="278496870827516" type="System">
+                                                    <param id="0" name="Variable">GG_Difficulty</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="430293860440776" type="System">
+                                                    <param id="0" name="Variable">GG_Score_String</param>
+                                                    <param id="1" name="Value">tokenat(GG_Score_String, 0, &quot; &quot;) &amp; &quot; &quot; &amp; Function.Param(0) &amp; &quot; &quot; &amp;  tokenat(GG_Score_String, 2, &quot; &quot;) </param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="385344662814665">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="651950188895235" type="System" />
+                                                <condition id="-14" name="Compare variable" sid="287174345747364" type="System">
+                                                    <param id="0" name="Variable">GG_Difficulty</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="295634333267123" type="System">
+                                                    <param id="0" name="Variable">GG_Score_String</param>
+                                                    <param id="1" name="Value">tokenat(GG_Score_String, 0, &quot; &quot;) &amp; &quot; &quot; &amp; tokenat(GG_Score_String, 1, &quot; &quot;) &amp; &quot; &quot; &amp; Function.Param(0) </param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="242000095528323">
+                                    <conditions />
+                                    <actions>
+                                        <action id="0" name="Add key" sid="248290658928722" type="GG_State">
+                                            <param id="0" name="Key">GG_Score_Key</param>
+                                            <param id="1" name="Value">GG_Score_String</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-group description="" sid="311367262024857" title="GG Calculate Time Elapse">
+                            <sub-events>
+                                <variable constant="0" name="GG_Time_Difference" sid="500059166085622" static="0" type="number">0</variable>
+                                <variable constant="0" name="GG_Time_Key" sid="194131328640818" static="0" type="text"></variable>
+                                <event-block sid="535145501519340">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="734913515925946" type="System">
+                                            <param id="0" name="Variable">GG_Time_Key</param>
+                                            <param id="1" name="Value">&quot;time&quot; &amp; GG_Selected_Game</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="260091387944458" type="System">
+                                            <param id="0" name="Variable">GG_Time_Difference</param>
+                                            <param id="1" name="Value">time - float(GG_State.Get(&quot;game entry time&quot;))</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="561470545810005">
+                                    <conditions>
+                                        <condition id="3" name="Has key" sid="222057528301397" type="GG_State">
+                                            <param id="0" name="Key">GG_Time_Key</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Add key" sid="709620795401887" type="GG_State">
+                                            <param id="0" name="Key">GG_Time_Key</param>
+                                            <param id="1" name="Value">float(GG_State.Get(GG_Time_Key)) + GG_Time_Difference</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="751077755491097">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="540896319143574" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Add key" sid="531367242656403" type="GG_State">
+                                            <param id="0" name="Key">GG_Time_Key</param>
+                                            <param id="1" name="Value">GG_Time_Difference</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-group description="" sid="466021340205020" title="GG Game Calculate Score and Triggers">
+                            <sub-events>
+                                <event-block sid="363537352198952">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="548238461662014" type="System">
+                                            <param id="0" name="Variable">GG_GAME_VERSION</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;CASUAL&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <variable constant="0" name="GG_trigger_animals" sid="677065542274262" static="0" type="number">0</variable>
+                                        <event-group description="" sid="773099186739512" title="GG Checking Individual Game Score Triggers">
+                                            <sub-events>
+                                                <variable constant="0" name="GG_Temp_Score" sid="160953389768475" static="0" type="text"></variable>
+                                                <event-block sid="776436073283749">
+                                                    <conditions />
+                                                    <actions>
+                                                        <action id="-9" name="Set value" sid="689106451821114" type="System">
+                                                            <param id="0" name="Variable">GG_Temp_Score</param>
+                                                            <param id="1" name="Value">GG_State.Get(&quot;game&quot; &amp; GG_Selected_Game)</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>If Medium + Hard scores is greater than 3</comment>
+                                                <event-block sid="672294482241099">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="763256825039302" type="System">
+                                                            <param id="0" name="First value">GG_Temp_Score</param>
+                                                            <param id="1" name="Comparison">1</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                        <condition id="-8" name="Compare two values" sid="695136384419588" type="System">
+                                                            <param id="0" name="First value">int(tokenat(GG_Temp_Score, 1, &quot; &quot;)) + int(tokenat(GG_Temp_Score, 2, &quot; &quot;)) </param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Second value">3</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <comment>Check if it is changed or not (value is non-existent or is 0)</comment>
+                                                        <event-block sid="794309833168250">
+                                                            <conditions>
+                                                                <condition id="3" name="Has key" sid="992685850578933" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible&quot; &amp; GG_Selected_Game</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-block sid="862511860342335">
+                                                                    <conditions>
+                                                                        <condition id="0" name="Compare value" sid="873120884328848" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible&quot; &amp; GG_Selected_Game</param>
+                                                                            <param id="1" name="Comparison">0</param>
+                                                                            <param id="2" name="Value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-9" name="Set value" sid="875403765689480" type="System">
+                                                                            <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                        <action id="0" name="Add key" sid="806126533537810" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible&quot; &amp; GG_Selected_Game</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="561712203541754">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="932335801952741" type="System" />
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-9" name="Set value" sid="585728751289312" type="System">
+                                                                    <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                                <action id="0" name="Add key" sid="980825076745307" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible&quot; &amp; GG_Selected_Game</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-group>
+                                        <event-group description="" sid="492662667356403" title="GG Checking Total Game Score Triggers">
+                                            <sub-events>
+                                                <variable constant="0" name="GG_Score_Sum" sid="699525106719616" static="0" type="number">0</variable>
+                                                <comment>Checking the scores of each game, totaling them up</comment>
+                                                <comment>Flagging &apos;trigger animal&apos; as necessary</comment>
+                                                <event-block sid="613163064254004">
+                                                    <conditions>
+                                                        <condition id="-10" name="For" sid="559993311253986" type="System">
+                                                            <param id="0" name="Name">&quot;Each Game&quot;</param>
+                                                            <param id="1" name="Start index">0</param>
+                                                            <param id="2" name="End index">7</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <comment>Adding Medium and Hard Scores to Sum</comment>
+                                                        <variable constant="0" name="GG_Temp_Scores" sid="868696582608445" static="0" type="text"></variable>
+                                                        <event-block sid="488578182144737">
+                                                            <conditions>
+                                                                <condition id="-8" name="Compare two values" sid="255164468489736" type="System">
+                                                                    <param id="0" name="First value">GG_State.Get(&quot;game&quot; &amp; loopindex)</param>
+                                                                    <param id="1" name="Comparison">1</param>
+                                                                    <param id="2" name="Second value">&quot;0&quot;</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-9" name="Set value" sid="220556020503234" type="System">
+                                                                    <param id="0" name="Variable">GG_Temp_Scores</param>
+                                                                    <param id="1" name="Value">GG_State.Get(&quot;game&quot; &amp; loopindex)</param>
+                                                                </action>
+                                                                <action id="-10" name="Add to" sid="449729370160634" type="System">
+                                                                    <param id="0" name="Variable">GG_Score_Sum</param>
+                                                                    <param id="1" name="Value">int(tokenat(GG_Temp_Scores, 1, &quot; &quot;)) + int(tokenat(GG_Temp_Scores, 2, &quot; &quot;)) </param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <comment>Animals with total conditions</comment>
+                                                <event-block sid="306364534755019">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="158536538842892" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">8</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="693890748933184">
+                                                            <conditions>
+                                                                <condition id="3" name="Has key" sid="795388211871094" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible8&quot;</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-block sid="437038957929176">
+                                                                    <conditions>
+                                                                        <condition id="0" name="Compare value" sid="421500533024235" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible8&quot;</param>
+                                                                            <param id="1" name="Comparison">0</param>
+                                                                            <param id="2" name="Value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-9" name="Set value" sid="556627224429507" type="System">
+                                                                            <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                        <action id="0" name="Add key" sid="822756955794317" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible8&quot;</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="818229666038618">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="329114850278604" type="System" />
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-9" name="Set value" sid="738084857949929" type="System">
+                                                                    <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                                <action id="0" name="Add key" sid="962363878542361" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible8&quot;</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <event-block sid="895152307030413">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="709913227302435" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">16</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="534917539902060">
+                                                            <conditions>
+                                                                <condition id="3" name="Has key" sid="317579798222418" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible9&quot;</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-block sid="846640835324003">
+                                                                    <conditions>
+                                                                        <condition id="0" name="Compare value" sid="588678948084705" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible9&quot;</param>
+                                                                            <param id="1" name="Comparison">0</param>
+                                                                            <param id="2" name="Value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-9" name="Set value" sid="715309130228686" type="System">
+                                                                            <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                        <action id="0" name="Add key" sid="702887769341949" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible9&quot;</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="768624158368183">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="917532832931818" type="System" />
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-9" name="Set value" sid="130612680408708" type="System">
+                                                                    <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                                <action id="0" name="Add key" sid="961689827424791" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible9&quot;</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <event-block sid="220298863406160">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="935493009729545" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">32</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="972282665264981">
+                                                            <conditions>
+                                                                <condition id="3" name="Has key" sid="425169221178791" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible10&quot;</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-block sid="252790005279693">
+                                                                    <conditions>
+                                                                        <condition id="0" name="Compare value" sid="995337903564562" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible10&quot;</param>
+                                                                            <param id="1" name="Comparison">0</param>
+                                                                            <param id="2" name="Value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-9" name="Set value" sid="191612573930025" type="System">
+                                                                            <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                        <action id="0" name="Add key" sid="191807006339889" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible10&quot;</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="991697123224256">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="129254228819545" type="System" />
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-9" name="Set value" sid="507996180036609" type="System">
+                                                                    <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                                <action id="0" name="Add key" sid="405484430411462" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible10&quot;</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <event-block sid="458727541706323">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="298678048677988" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">48</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="154725266425167">
+                                                            <conditions>
+                                                                <condition id="3" name="Has key" sid="349501713751674" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible11&quot;</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-block sid="389222300951450">
+                                                                    <conditions>
+                                                                        <condition id="0" name="Compare value" sid="963335366602916" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible11&quot;</param>
+                                                                            <param id="1" name="Comparison">0</param>
+                                                                            <param id="2" name="Value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-9" name="Set value" sid="644684546948310" type="System">
+                                                                            <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                        <action id="0" name="Add key" sid="177937575727090" type="GG_State">
+                                                                            <param id="0" name="Key">&quot;C6_Animal_Visible11&quot;</param>
+                                                                            <param id="1" name="Value">1</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="262894369591714">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="979130167680243" type="System" />
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-9" name="Set value" sid="333585455442599" type="System">
+                                                                    <param id="0" name="Variable">GG_trigger_animals</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                                <action id="0" name="Add key" sid="343377857499861" type="GG_State">
+                                                                    <param id="0" name="Key">&quot;C6_Animal_Visible11&quot;</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-group>
+                                        <event-block sid="238422017745738">
+                                            <conditions />
+                                            <actions>
+                                                <action id="0" name="Add key" sid="156905401323945" type="GG_State">
+                                                    <param id="0" name="Key">&quot;trigger animals&quot;</param>
+                                                    <param id="1" name="Value">GG_trigger_animals</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="367283067033319">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="139931875418523" type="System">
+                                            <param id="0" name="Variable">GG_GAME_VERSION</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;STORY&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <comment>Checking the scores of each game, totaling them up</comment>
+                                        <variable constant="0" name="GG_Score_Sum" sid="605250245451765" static="0" type="number">0</variable>
+                                        <variable constant="0" name="GG_Trigger_Cutscene" sid="733431029731912" static="0" type="number">0</variable>
+                                        <event-block sid="808729754794253">
+                                            <conditions>
+                                                <condition id="-10" name="For" sid="883923447664859" type="System">
+                                                    <param id="0" name="Name">&quot;Each Game&quot;</param>
+                                                    <param id="1" name="Start index">0</param>
+                                                    <param id="2" name="End index">7</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <comment>Adding Medium and Hard Scores to Sum</comment>
+                                                <variable constant="0" name="GG_Temp_Scores" sid="388954189826448" static="0" type="text"></variable>
+                                                <event-block sid="877421662199105">
+                                                    <conditions>
+                                                        <condition id="3" name="Has key" sid="885722366072046" type="GG_State">
+                                                            <param id="0" name="Key">&quot;game&quot; &amp; loopindex</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" sid="692018042062023" type="System">
+                                                            <param id="0" name="Variable">GG_Temp_Scores</param>
+                                                            <param id="1" name="Value">GG_State.Get(&quot;game&quot; &amp; loopindex)</param>
+                                                        </action>
+                                                        <action id="-10" name="Add to" sid="906551032373171" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Value">int(tokenat(GG_Temp_Scores, 1, &quot; &quot;)) + int(tokenat(GG_Temp_Scores, 2, &quot; &quot;)) </param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-group description="" sid="829488546995792" title="Cutscene Conditions">
+                                            <sub-events>
+                                                <event-block sid="354674185641499">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="155871283484862" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">4</param>
+                                                        </condition>
+                                                        <condition id="0" name="Compare value" sid="989038817249291" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">6</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Add key" sid="181110545016201" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Value">5</param>
+                                                        </action>
+                                                        <action id="-9" name="Set value" sid="167120953646892" type="System">
+                                                            <param id="0" name="Variable">GG_Trigger_Cutscene</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="280956727521828">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="878578546534761" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">12</param>
+                                                        </condition>
+                                                        <condition id="0" name="Compare value" sid="820991794047287" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">5</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Add key" sid="251869138990835" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Value">4</param>
+                                                        </action>
+                                                        <action id="-9" name="Set value" sid="421750467431301" type="System">
+                                                            <param id="0" name="Variable">GG_Trigger_Cutscene</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="608310171762135">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="886969943916490" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">19</param>
+                                                        </condition>
+                                                        <condition id="0" name="Compare value" sid="217963297271665" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">4</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Add key" sid="507693524807981" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Value">3</param>
+                                                        </action>
+                                                        <action id="-9" name="Set value" sid="693967619435662" type="System">
+                                                            <param id="0" name="Variable">GG_Trigger_Cutscene</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="818623401764854">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="195585172847863" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">26</param>
+                                                        </condition>
+                                                        <condition id="0" name="Compare value" sid="944252032799691" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">3</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Add key" sid="989079533785027" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Value">2</param>
+                                                        </action>
+                                                        <action id="-9" name="Set value" sid="589269162734172" type="System">
+                                                            <param id="0" name="Variable">GG_Trigger_Cutscene</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="177880080525361">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="162335098810684" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">33</param>
+                                                        </condition>
+                                                        <condition id="0" name="Compare value" sid="570023347563970" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">2</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Add key" sid="871274052937641" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                        <action id="-9" name="Set value" sid="197141549296074" type="System">
+                                                            <param id="0" name="Variable">GG_Trigger_Cutscene</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="995927573441065">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="935746455022683" type="System">
+                                                            <param id="0" name="Variable">GG_Score_Sum</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">40</param>
+                                                        </condition>
+                                                        <condition id="0" name="Compare value" sid="676148027475281" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">1</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Add key" sid="714237255550406" type="GG_State">
+                                                            <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                        <action id="-9" name="Set value" sid="749545536826388" type="System">
+                                                            <param id="0" name="Variable">GG_Trigger_Cutscene</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-group>
+                                        <event-block sid="632947947886974">
+                                            <conditions />
+                                            <actions>
+                                                <action id="0" name="Add key" sid="837716274613582" type="GG_State">
+                                                    <param id="0" name="Key">&quot;trigger cutscene&quot;</param>
+                                                    <param id="1" name="Value">GG_Trigger_Cutscene</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <comment>Save new score</comment>
+                        <event-block sid="867402010718416">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="708333110338585" type="System">
+                                    <param id="0" name="Variable">GG_After_LS</param>
+                                    <param id="1" name="Value">&quot;GG Exit Game 2&quot;</param>
+                                </action>
+                                <action id="0" name="Set item" sid="116631192408672" type="LocalStorage">
+                                    <param id="0" name="Key">&quot;ggstate&quot;</param>
+                                    <param id="1" name="Value">GG_State.AsJSON</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>After Save</comment>
+                <event-block sid="125119102026562">
+                    <conditions>
+                        <condition id="0" name="On function" sid="781306771621231" type="Function">
+                            <param id="0" name="Name">&quot;GG Exit Game 2&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="379188201760079">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="198615626206739" type="System">
+                                    <param id="0" name="Variable">GG_GAME_VERSION</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;CASUAL&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-25" name="Go to layout (by name)" sid="962829198012740" type="System">
+                                    <param id="0" name="Layout">&quot;C6 Menu&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="484360170151619">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="467970502475055" type="System">
+                                    <param id="0" name="Variable">GG_GAME_VERSION</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;STORY&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>if cutscene triggered then go to cutscene</comment>
+                                <event-block sid="870518489244397">
+                                    <conditions>
+                                        <condition id="0" name="Compare value" sid="839773710616329" type="GG_State">
+                                            <param id="0" name="Key">&quot;trigger cutscene&quot;</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="801178916670384">
+                                            <conditions>
+                                                <condition id="0" name="Compare value" sid="183282082190672" type="GG_State">
+                                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Go to layout" sid="533719121749891" type="System">
+                                                    <param id="0" name="Layout">Change5C</param>
+                                                </action>
+                                                <action id="-27" name="Set effect enabled" sid="216309291197221" type="N6_Thermometer">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="340355297807239">
+                                            <conditions>
+                                                <condition id="0" name="Compare value" sid="746413506908597" type="GG_State">
+                                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">4</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Go to layout" sid="385642644728717" type="System">
+                                                    <param id="0" name="Layout">Change4C</param>
+                                                </action>
+                                                <action id="-27" name="Set effect enabled" sid="317821721215158" type="N6_Thermometer">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="108289014612760">
+                                            <conditions>
+                                                <condition id="0" name="Compare value" sid="123159955181527" type="GG_State">
+                                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">3</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Go to layout" sid="404684168444295" type="System">
+                                                    <param id="0" name="Layout">Change3C</param>
+                                                </action>
+                                                <action id="-27" name="Set effect enabled" sid="792898685862463" type="N6_Thermometer">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="535240572950399">
+                                            <conditions>
+                                                <condition id="0" name="Compare value" sid="323491446758415" type="GG_State">
+                                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Go to layout" sid="251469667221931" type="System">
+                                                    <param id="0" name="Layout">Change2C</param>
+                                                </action>
+                                                <action id="-27" name="Set effect enabled" sid="246938653117925" type="N6_Thermometer">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="934634662535922">
+                                            <conditions>
+                                                <condition id="0" name="Compare value" sid="109943258955784" type="GG_State">
+                                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Go to layout" sid="900945618187084" type="System">
+                                                    <param id="0" name="Layout">Change1C</param>
+                                                </action>
+                                                <action id="-27" name="Set effect enabled" sid="682376700369220" type="N6_Thermometer">
+                                                    <param id="0" name="Mode">1</param>
+                                                    <param id="1" name="Effect">&quot;SetColor&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="414251850432779">
+                                            <conditions>
+                                                <condition id="0" name="Compare value" sid="587763275042961" type="GG_State">
+                                                    <param id="0" name="Key">&quot;future temperature&quot;</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Go to layout" sid="481146926311579" type="System">
+                                                    <param id="0" name="Layout">Ending</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Else go to present view</comment>
+                                <event-block sid="402734797398929">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="837248911155997" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-25" name="Go to layout (by name)" sid="836141589289275" type="System">
+                                            <param id="0" name="Layout">&quot;N6 Present View&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="642174489170270" title="GG Game Reload">
+            <sub-events>
+                <comment>function (callback)</comment>
+                <event-block sid="340749301854390">
+                    <conditions>
+                        <condition id="0" name="On function" sid="948480466070169" type="Function">
+                            <param id="0" name="Name">&quot;GG Reload Game&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="33" name="Stop all" sid="727136672161710" type="Audio" />
+                        <action id="-9" name="Set value" sid="533884006517781" type="System">
+                            <param id="0" name="Variable">GG_Selected_Game</param>
+                            <param id="1" name="Value">GG_State.Get(&quot;selected game&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="519454823984074" type="System">
+                            <param id="0" name="Variable">GG_Difficulty</param>
+                            <param id="1" name="Value">GG_State.Get(&quot;difficulty&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-group description="" sid="299026587606979" title="GG Restart Save Score">
+                            <sub-events>
+                                <variable constant="0" name="GG_Score_String" sid="240133145115818" static="0" type="text"></variable>
+                                <variable constant="0" name="GG_Score_Key" sid="301884860195544" static="0" type="text"></variable>
+                                <event-block sid="697628108079093">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="880189599864213" type="System">
+                                            <param id="0" name="Variable">GG_Score_Key</param>
+                                            <param id="1" name="Value">&quot;game&quot; &amp; GG_Selected_Game</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="293647770285181">
+                                    <conditions>
+                                        <condition id="3" name="Has key" sid="578708010516153" type="GG_State">
+                                            <param id="0" name="Key">GG_Score_Key</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="462731099987504" type="System">
+                                            <param id="0" name="Variable">GG_Score_String</param>
+                                            <param id="1" name="Value">GG_State.Get(GG_Score_Key)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="561597373821651">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="408955679244113" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="786989539573248" type="System">
+                                            <param id="0" name="Variable">GG_Score_String</param>
+                                            <param id="1" name="Value">&quot;0 0 0&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="704326295240264">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="239413885860755" type="System">
+                                            <param id="0" name="First value">int(tokenat(GG_Score_String, GG_State.Get(&quot;difficulty&quot;), &quot; &quot;))</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Function.Param(0)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="900399627055185">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="628101254935535" type="System">
+                                                    <param id="0" name="Variable">GG_Difficulty</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="734257637619627" type="System">
+                                                    <param id="0" name="Variable">GG_Score_String</param>
+                                                    <param id="1" name="Value">Function.Param(0) &amp; &quot; &quot; &amp; tokenat(GG_Score_String, 1, &quot; &quot;) &amp; &quot; &quot; &amp; tokenat(GG_Score_String, 2, &quot; &quot;) </param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="665741167816918">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="449533302937064" type="System" />
+                                                <condition id="-14" name="Compare variable" sid="442804492936773" type="System">
+                                                    <param id="0" name="Variable">GG_Difficulty</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="703487487532453" type="System">
+                                                    <param id="0" name="Variable">GG_Score_String</param>
+                                                    <param id="1" name="Value">tokenat(GG_Score_String, 0, &quot; &quot;) &amp; &quot; &quot; &amp; Function.Param(0) &amp; &quot; &quot; &amp;  tokenat(GG_Score_String, 2, &quot; &quot;) </param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="932424276633579">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="854345400863543" type="System" />
+                                                <condition id="-14" name="Compare variable" sid="801479344502888" type="System">
+                                                    <param id="0" name="Variable">GG_Difficulty</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="400803993971417" type="System">
+                                                    <param id="0" name="Variable">GG_Score_String</param>
+                                                    <param id="1" name="Value">tokenat(GG_Score_String, 0, &quot; &quot;) &amp; &quot; &quot; &amp; tokenat(GG_Score_String, 1, &quot; &quot;) &amp; &quot; &quot; &amp; Function.Param(0) </param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="303437635611118">
+                                    <conditions />
+                                    <actions>
+                                        <action id="0" name="Add key" sid="592858473268526" type="GG_State">
+                                            <param id="0" name="Key">GG_Score_Key</param>
+                                            <param id="1" name="Value">GG_Score_String</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-block sid="714902665674831">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="909306957566872" type="System">
+                                    <param id="0" name="Variable">GG_After_LS</param>
+                                    <param id="1" name="Value">&quot;GG Reload Game 2&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="584739021897726" type="System">
+                                    <param id="0" name="Variable">GG_Callback</param>
+                                    <param id="1" name="Value">Function.Param(1)</param>
+                                </action>
+                                <action id="0" name="Set item" sid="966276705889202" type="LocalStorage">
+                                    <param id="0" name="Key">&quot;ggstate&quot;</param>
+                                    <param id="1" name="Value">GG_State.AsJSON</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="331236001924878">
+                    <conditions>
+                        <condition id="0" name="On function" sid="311864933547307" type="Function">
+                            <param id="0" name="Name">&quot;GG Reload Game 2&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="758180350571785" type="Function">
+                            <param id="0" name="Name">GG_Callback</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,1095 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>C6 Menu</name>
+    <events>
+        <include>GG Scores and Levels</include>
+        <variable constant="0" name="C6_UIState" sid="833072582617239" static="0" type="text">UIStart</variable>
+        <variable constant="0" name="C6_SelectedGame" sid="917913845086719" static="0" type="number">-1</variable>
+        <event-group description="" sid="798539094925012" title="C6 Initialize Menu State">
+            <sub-events>
+                <event-block sid="165946170246953">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="684877759261315" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Fade" id="2" name="Set fade-in time" sid="670801137206666" type="GG_Black">
+                            <param id="0" name="Fade-in time">0</param>
+                        </action>
+                        <action behavior="Fade" id="4" name="Set fade-out time" sid="188629850185389" type="GG_Black">
+                            <param id="0" name="Fade-out time">0.3</param>
+                        </action>
+                        <action behavior="Fade" id="3" name="Set wait time" sid="103077148290894" type="GG_Black">
+                            <param id="0" name="Wait time">0</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="810164029053907" type="System">
+                            <param id="0" name="Object to create">CR_TitleText</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">-300</param>
+                            <param id="3" name="Y">-300</param>
+                        </action>
+                        <action id="5" name="Set web font" sid="805570342999420" type="CR_TitleText">
+                            <param id="0" name="Family name">&quot;Orange Kid&quot;</param>
+                            <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="707769616456017">
+                            <conditions>
+                                <condition id="4" name="Is empty" sid="248737792494712" type="GG_State" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="859032456075485" type="Function">
+                                    <param id="0" name="Name">&quot;GG Initialize Data&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;CASUAL&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="998892436236842">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="113490160465522" type="System" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Fade" id="1" name="Start fade" sid="491699141140977" type="GG_Black" />
+                                <action id="0" name="Call function" sid="978208440830971" type="Function">
+                                    <param id="0" name="Name">&quot;GG Fetch State&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;Start CASUAL&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Initialize Callback</comment>
+                <event-block sid="448334342164413">
+                    <conditions>
+                        <condition id="0" name="On function" sid="783930151792419" type="Function">
+                            <param id="0" name="Name">&quot;Start CASUAL&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-group description="" sid="391725355986859" title="C6 Initialize Animals">
+                            <sub-events>
+                                <comment>Initialize Animals</comment>
+                                <event-block sid="356872569864320">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="787644148447854" type="System">
+                                            <param id="0" name="Object">C6_Animals</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="381036825219404">
+                                            <conditions>
+                                                <condition id="3" name="Has key" sid="293590013474013" type="GG_State">
+                                                    <param id="0" name="Key">&quot;C6_Animal_Visible&quot; &amp; C6_Animals.gameNum</param>
+                                                </condition>
+                                                <condition id="0" name="Compare value" sid="298258225732679" type="GG_State">
+                                                    <param id="0" name="Key">&quot;C6_Animal_Visible&quot; &amp; C6_Animals.gameNum</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-15" name="Set visible" sid="517685057077622" type="C6_Animals">
+                                                    <param id="0" name="Visibility">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="832276813685750">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="230037054303289" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-15" name="Set visible" sid="861399703037747" type="C6_Animals">
+                                                    <param id="0" name="Visibility">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>DEBUG</comment>
+                                        <event-block disabled="1" sid="157823720120215">
+                                            <conditions />
+                                            <actions>
+                                                <action id="-15" name="Set visible" sid="568082845730707" type="C6_Animals">
+                                                    <param id="0" name="Visibility">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Special conditions</comment>
+                                <event-block sid="256479737120225">
+                                    <conditions>
+                                        <condition id="-9" name="Is visible" sid="216016662371029" type="C6_Bear" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="989651827351225" type="C6_BBQ">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="513196353932868">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="986502445627138" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="133105691908037" type="C6_BBQ">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="533370644694138">
+                                    <conditions>
+                                        <condition id="-9" name="Is visible" sid="968267811751005" type="C6_Skunk" />
+                                        <condition id="-9" name="Is visible" sid="488360724584212" type="C6_Badger" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="320956882649488" type="C6_Car">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="976719059818163">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="522623729338570" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="786080714010071" type="C6_Car">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>DEBUG</comment>
+                                <event-block disabled="1" sid="954989324679088">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="417300150961366" type="C6_Animals">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-group description="" sid="172072129356291" title="C6 Initialize Audio">
+                            <sub-events>
+                                <comment>Audio Button Animation Initialization</comment>
+                                <event-block sid="525450854191953">
+                                    <conditions>
+                                        <condition id="3" name="Is silent" sid="723695587249953" type="Audio" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="816230095397024" type="C6_Sound">
+                                            <param id="0" name="Animation">&quot;off&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="606636747131441">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="466922623091718" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="625672736935872" type="C6_Sound">
+                                            <param id="0" name="Animation">&quot;on&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <comment>Set UI State</comment>
+                        <event-block sid="510923425610583">
+                            <conditions>
+                                <condition id="0" name="Compare value" sid="198667594403917" type="GG_State">
+                                    <param id="0" name="Key">&quot;exit from game&quot;</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Add key" sid="939882333540247" type="GG_State">
+                                    <param id="0" name="Key">&quot;exit from game&quot;</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>TODO: Set to &quot;UIStart&quot; when score changes</comment>
+                                <event-block sid="433087114017480">
+                                    <conditions>
+                                        <condition id="0" name="Compare value" sid="839195968459890" type="GG_State">
+                                            <param id="0" name="Key">&quot;trigger animals&quot;</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="1" name="Set key" sid="721468149750571" type="GG_State">
+                                            <param id="0" name="Key">&quot;trigger animals&quot;</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="279038369380502" type="Function">
+                                            <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;UIStart&quot;</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="423791083605897" type="System">
+                                            <param id="0" name="Object to create">C6_NewAnimalText</param>
+                                            <param id="1" name="Layer">&quot;New Animal Prompt&quot;</param>
+                                            <param id="2" name="X">960</param>
+                                            <param id="3" name="Y">600</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="338296268814366" type="Audio">
+                                            <param id="0" name="Audio file">sfx_placeclothing</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;Animal Notification&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="204624782948710">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="935877518974816" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="105772279252488" type="Function">
+                                            <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;UIDifficulty&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="731041175146144">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="718998469523601" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="156616061485383" type="Function">
+                                    <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;UIStart&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Other</comment>
+                        <event-block sid="908272088239564">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="905068356210441" type="System">
+                                    <param id="0" name="Variable">GG_Selected_Game</param>
+                                    <param id="1" name="Value">GG_State.Get(&quot;selected game&quot;)</param>
+                                </action>
+                                <action behavior="Fade" id="1" name="Start fade" sid="341937436518685" type="GG_Black" />
+                                <action id="0" name="Play" sid="797550488481836" type="Audio">
+                                    <param id="0" name="Audio file">bgm_casualmenubackground</param>
+                                    <param id="2" name="Loop">1</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;Casual Menu&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="259049637324713" title="C6 Menus">
+            <sub-events>
+                <variable constant="0" name="C6_Switched" sid="496696625665803" static="0" type="number">0</variable>
+                <event-block sid="362761814650097">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="610223398157889" type="System">
+                            <param id="0" name="Variable">C6_UIState</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;UIDifficulty&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="602066614602037">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="493006171061322" type="Touch" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="745528376621192">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="409284748115823" type="Touch">
+                                            <param id="0" name="Object">C6_ButtonEasy</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Play" sid="411595809111848" type="Audio">
+                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="550914155368628" type="System">
+                                            <param id="0" name="Variable">C6_Switched</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="501922786289729" type="Function">
+                                            <param id="0" name="Name">&quot;GG Select Game&quot;</param>
+                                            <param id="1" name="Parameter {n}">GG_Selected_Game{###}0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="429297913093982">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="908481572458396" type="Touch">
+                                            <param id="0" name="Object">C6_ButtonMedium</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="739035242546386">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="175700580695218" type="System">
+                                                    <param id="0" name="Variable">GG_DEBGU</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="910270435398006" type="Function">
+                                                    <param id="0" name="Name">&quot;GG Select Game&quot;</param>
+                                                    <param id="1" name="Parameter {n}">GG_Selected_Game{###}1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="213343914734256">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="197981880426476" type="System" />
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block any="1" sid="265236525910663">
+                                                    <conditions>
+                                                        <condition id="2" name="Is playing" sid="849388857440849" type="C6_ButtonEasy">
+                                                            <param id="0" name="Animation">&quot;d1&quot;</param>
+                                                        </condition>
+                                                        <condition id="2" name="Is playing" sid="202727757748191" type="C6_ButtonEasy">
+                                                            <param id="0" name="Animation">&quot;d2&quot;</param>
+                                                        </condition>
+                                                        <condition id="2" name="Is playing" sid="501026836269824" type="C6_ButtonEasy">
+                                                            <param id="0" name="Animation">&quot;d3&quot;</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Play" sid="180087164613923" type="Audio">
+                                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                                            <param id="2" name="Loop">0</param>
+                                                            <param id="3" name="Volume">0</param>
+                                                            <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                                                        </action>
+                                                        <action id="0" name="Call function" sid="890818353186043" type="Function">
+                                                            <param id="0" name="Name">&quot;GG Select Game&quot;</param>
+                                                            <param id="1" name="Parameter {n}">GG_Selected_Game{###}1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="849987999967404">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="900231201511949" type="Touch">
+                                            <param id="0" name="Object">C6_ButtonHard</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="409258782696733">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="236629193237864" type="System">
+                                                    <param id="0" name="Variable">GG_DEBGU</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="114622882855118" type="Function">
+                                                    <param id="0" name="Name">&quot;GG Select Game&quot;</param>
+                                                    <param id="1" name="Parameter {n}">GG_Selected_Game{###}2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="350796712301080">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="159649834944350" type="System" />
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block any="1" sid="499029792718059">
+                                                    <conditions>
+                                                        <condition id="2" name="Is playing" sid="451169100655596" type="C6_ButtonMedium">
+                                                            <param id="0" name="Animation">&quot;d1&quot;</param>
+                                                        </condition>
+                                                        <condition id="2" name="Is playing" sid="787615903643958" type="C6_ButtonMedium">
+                                                            <param id="0" name="Animation">&quot;d2&quot;</param>
+                                                        </condition>
+                                                        <condition id="2" name="Is playing" sid="898293582502507" type="C6_ButtonMedium">
+                                                            <param id="0" name="Animation">&quot;d3&quot;</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Play" sid="353433201467342" type="Audio">
+                                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                                            <param id="2" name="Loop">0</param>
+                                                            <param id="3" name="Volume">0</param>
+                                                            <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                                                        </action>
+                                                        <action id="0" name="Call function" sid="163990332250951" type="Function">
+                                                            <param id="0" name="Name">&quot;GG Select Game&quot;</param>
+                                                            <param id="1" name="Parameter {n}">GG_Selected_Game{###}2</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="644328527431372">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="661329554695581" type="Touch">
+                                            <param id="0" name="Object">C6_ButtonBack</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Play" sid="370911850749959" type="Audio">
+                                            <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="269323787601337" type="System">
+                                            <param id="0" name="Variable">C6_Switched</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="603757517301941" type="Function">
+                                            <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;UILevels&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="954540399086581">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="808064853968873" type="System" />
+                        <condition id="-14" name="Compare variable" sid="204942102378158" type="System">
+                            <param id="0" name="Variable">C6_UIState</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;UIStart&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="606874261623484" type="System">
+                            <param id="0" name="Variable">C6_Switched</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="337458181481037">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="794677730294377" type="Touch" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="451966238888688" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="101957701906778">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="133626459089082" type="Touch">
+                                            <param id="0" name="Object">C6_ButtonLevels</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="534284093832503" type="System">
+                                            <param id="0" name="Variable">C6_Switched</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="319080604571406" type="Function">
+                                            <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;UILevels&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="655518581189830">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="110400701618433" type="Touch">
+                                            <param id="0" name="Object">C6_Sound</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="899748187666027" type="System">
+                                            <param id="0" name="Variable">C6_Switched</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="8" name="Set silent" sid="697357458315144" type="Audio">
+                                            <param id="0" name="Mode">2</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="203275918447945">
+                                            <conditions>
+                                                <condition id="3" name="Is silent" sid="147487017696079" type="Audio" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="941333268197931" type="C6_Sound">
+                                                    <param id="0" name="Animation">&quot;off&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="424382448460822">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="516628060789746" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="588020493485883" type="C6_Sound">
+                                                    <param id="0" name="Animation">&quot;on&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="691360003313515">
+                                                    <conditions>
+                                                        <condition id="4" name="Is any playing" sid="714163671130310" type="Audio" />
+                                                    </conditions>
+                                                    <actions />
+                                                </event-block>
+                                                <event-block sid="164309577227648">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="595602141414012" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Play" sid="529409319061515" type="Audio">
+                                                            <param id="0" name="Audio file">bgm_casualmenubackground</param>
+                                                            <param id="2" name="Loop">1</param>
+                                                            <param id="3" name="Volume">0</param>
+                                                            <param id="1" name="Tag (optional)">&quot;Casual Menu&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="845478679691389">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="674941170501694" type="Touch">
+                                            <param id="0" name="Object">C6_CreditsButton</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="463670082651062" type="System">
+                                            <param id="0" name="Layout">CR_edits</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="293768219577817">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="131472778900713" type="Touch">
+                                            <param id="0" name="Object">C6_StatsButton</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Go to layout" sid="567895431091476" type="System">
+                                            <param id="0" name="Layout">Score Screen</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="198241647043509">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="690818084276589" type="System" />
+                        <condition id="-14" name="Compare variable" sid="696185119571805" type="System">
+                            <param id="0" name="Variable">C6_UIState</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;UILevels&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="779670561534662" type="System">
+                            <param id="0" name="Variable">C6_Switched</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="109246091617247">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="983189037642173" type="Touch" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="688815619144456" type="Audio">
+                                    <param id="0" name="Audio file">sfx_clicking_clikable_obj</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;click&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="544983462933344">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="361810555944347" type="Touch">
+                                            <param id="0" name="Object">C6_LevelIcon</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="721783501718663" type="System">
+                                            <param id="0" name="Variable">C6_Switched</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="459080238536782" type="System">
+                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                            <param id="1" name="Value">C6_LevelIcon.Game</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="697786891815410" type="Function">
+                                            <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;UIDifficulty&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="798998185949249">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="771909741504988" type="System" />
+                                        <condition id="4" name="Is touching object" sid="192961663569824" type="Touch">
+                                            <param id="0" name="Object">C6_ButtonBack</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="303921483225693" type="System">
+                                            <param id="0" name="Variable">C6_Switched</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="289370447166658" type="Function">
+                                            <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;UIStart&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-group description="" sid="139980612319212" title="C6 Switching Layouts">
+                    <sub-events>
+                        <event-block sid="245507802519258">
+                            <conditions>
+                                <condition id="0" name="On function" sid="422199215004298" type="Function">
+                                    <param id="0" name="Name">&quot;C6 Switch Menu To&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="847447838166871">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-4" name="Set layer visible" sid="533729929744306" type="System">
+                                            <param id="0" name="Layer">C6_UIState</param>
+                                            <param id="1" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-4" name="Set layer visible" sid="440701323218437" type="System">
+                                            <param id="0" name="Layer">&quot;UIDifficulty&quot;</param>
+                                            <param id="1" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="626089034242035" type="System">
+                                            <param id="0" name="Variable">C6_UIState</param>
+                                            <param id="1" name="Value">Function.Param(0)</param>
+                                        </action>
+                                        <action id="-4" name="Set layer visible" sid="601645914313355" type="System">
+                                            <param id="0" name="Layer">C6_UIState</param>
+                                            <param id="1" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-4" name="Set layer visible" sid="973857114455183" type="System">
+                                            <param id="0" name="Layer">&quot;Animals&quot;</param>
+                                            <param id="1" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="919587242528095">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="770113131172808" type="System">
+                                            <param id="0" name="Variable">C6_UIState</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;UIDifficulty&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="873655756231300" type="C6_Background">
+                                            <param id="0" name="Animation">&quot;Blank&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <comment>Setting the Text, Description, etc...</comment>
+                                        <event-group description="" sid="600431153687778" title="C6 Setting Text and Icon">
+                                            <sub-events>
+                                                <comment>Set GameIcon</comment>
+                                                <event-block sid="526438218254844">
+                                                    <conditions />
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="226503826438319" type="C6_GameIcon">
+                                                            <param id="0" name="Animation">&quot;G&quot; &amp; GG_Selected_Game</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="376694844690381">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="827141218551669" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="179402943336289" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Spot Rush&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="195955627866464">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="760907898723996" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">1</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="468482359697803" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Dish Fusion&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="220600799067070">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="944577085660599" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">2</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="860491868818855" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Heat-Lock&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="750476895396039">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="367179078269424" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">3</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="540114996175893" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Donation Overload&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="513273281301631">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="934407563199385" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">4</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="243070477298879" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Pitstop Pursuit&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="173075674769431">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="933760866781738" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">5</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="663793219760371" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Delivery Dodger&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="719167476945232">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="290270478008736" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">6</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="321773930929295" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Electronics Hunt&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="371139961935307">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="471101488599933" type="System">
+                                                            <param id="0" name="Variable">GG_Selected_Game</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">7</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Set text" sid="221433374497684" type="C6_TempDiffTitle">
+                                                            <param id="0" name="Text">&quot;Gather, Platter, Profit&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-group>
+                                        <comment>Setting the States of the Difficulty Buttons</comment>
+                                        <event-group description="" sid="613998623232183" title="C6 Setting Difficulty Button State">
+                                            <sub-events>
+                                                <variable constant="0" name="C6_Game_Difficulty_Data" sid="835191895779763" static="1" type="text"></variable>
+                                                <event-block sid="753439739400100">
+                                                    <conditions />
+                                                    <actions>
+                                                        <action id="-9" name="Set value" sid="448831032809886" type="System">
+                                                            <param id="0" name="Variable">C6_Game_Difficulty_Data</param>
+                                                            <param id="1" name="Value">GG_State.Get(&quot;game&quot; &amp; GG_Selected_Game)</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Tutorial Button</comment>
+                                                <event-block any="1" sid="586548608564383">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="487759328462416" type="System">
+                                                            <param id="0" name="First value">C6_Game_Difficulty_Data</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                        <condition id="-8" name="Compare two values" sid="534177911537580" type="System">
+                                                            <param id="0" name="First value">tokenat(C6_Game_Difficulty_Data, 0, &quot; &quot;)</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="198139946669970" type="C6_ButtonEasy">
+                                                            <param id="0" name="Animation">&quot;d0&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="428545337505478">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="652412346546504" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="870577216855702" type="C6_ButtonEasy">
+                                                            <param id="0" name="Animation">&quot;d1&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Medium Button</comment>
+                                                <event-block any="1" sid="508322134004151">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="595472827660653" type="System">
+                                                            <param id="0" name="First value">C6_Game_Difficulty_Data</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                        <condition id="-8" name="Compare two values" sid="423408794012282" type="System">
+                                                            <param id="0" name="First value">tokenat(C6_Game_Difficulty_Data, 0, &quot; &quot;)</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="972025650102928" type="C6_ButtonMedium">
+                                                            <param id="0" name="Animation">&quot;d0&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action id="-27" name="Set effect enabled" sid="885831657442867" type="C6_ButtonMedium">
+                                                            <param id="0" name="Mode">1</param>
+                                                            <param id="1" name="Effect">&quot;Sepia&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="970237222063333">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="669481745289090" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="297496477813337" type="C6_ButtonMedium">
+                                                            <param id="0" name="Animation">&quot;d&quot; &amp; tokenat(C6_Game_Difficulty_Data, 1, &quot; &quot;)</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action id="-27" name="Set effect enabled" sid="263123249774306" type="C6_ButtonMedium">
+                                                            <param id="0" name="Mode">0</param>
+                                                            <param id="1" name="Effect">&quot;Sepia&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Hard Button</comment>
+                                                <event-block any="1" sid="681047765651430">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="436973695564806" type="System">
+                                                            <param id="0" name="First value">C6_Game_Difficulty_Data</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                        <condition id="-8" name="Compare two values" sid="656367225146360" type="System">
+                                                            <param id="0" name="First value">tokenat(C6_Game_Difficulty_Data, 1, &quot; &quot;)</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">&quot;0&quot;</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="595583979030688" type="C6_ButtonHard">
+                                                            <param id="0" name="Animation">&quot;d0&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action id="-27" name="Set effect enabled" sid="478641682837858" type="C6_ButtonHard">
+                                                            <param id="0" name="Mode">1</param>
+                                                            <param id="1" name="Effect">&quot;Sepia&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="715601847773178">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="177773711342133" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="461930292076589" type="C6_ButtonHard">
+                                                            <param id="0" name="Animation">&quot;d&quot; &amp; tokenat(C6_Game_Difficulty_Data, 2, &quot; &quot;)</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action id="-27" name="Set effect enabled" sid="534891503430184" type="C6_ButtonHard">
+                                                            <param id="0" name="Mode">0</param>
+                                                            <param id="1" name="Effect">&quot;Sepia&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-group>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="909382381472515">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="221181662337726" type="System">
+                                            <param id="0" name="Variable">C6_UIState</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;UIStart&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="853481040020666" type="C6_Background">
+                                            <param id="0" name="Animation">&quot;StartScreen&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-4" name="Set layer visible" sid="256261387784078" type="System">
+                                            <param id="0" name="Layer">&quot;Animals&quot;</param>
+                                            <param id="1" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="186372154286442">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="502342809948149" type="System">
+                                            <param id="0" name="Variable">C6_UIState</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;UILevels&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="833116569514722" type="C6_Background">
+                                            <param id="0" name="Animation">&quot;LevelSelect&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="719585060478590" title="C6 Animal Animations">
+            <sub-events>
+                <variable constant="1" name="C6_ANIM_DUR_MIN" sid="686588198041134" static="0" type="number">5</variable>
+                <variable constant="1" name="C6_ANIM_DUR_MAX" sid="483099773090685" static="0" type="number">12</variable>
+                <event-block sid="378047504861795">
+                    <conditions>
+                        <condition id="4" name="On finished" sid="392635635315287" type="C6_Animals">
+                            <param id="0" name="Animation">&quot;moving&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="648533128818659" type="C6_Animals">
+                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="497118559417018" type="C6_Animals">
+                            <param id="0" name="Instance variable">anim_dur</param>
+                            <param id="1" name="Value">random(C6_ANIM_DUR_MIN,C6_ANIM_DUR_MAX)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="537774361427876">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="832910404547621" type="System">
+                            <param id="0" name="Object">C6_Animals</param>
+                        </condition>
+                        <condition id="-9" name="Is visible" sid="356580546255356" type="C6_Animals" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="366548999976590">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="724758227773608" type="C6_Animals">
+                                    <param id="0" name="Instance variable">anim_dur</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" sid="653046163746098" type="C6_Animals">
+                                    <param id="0" name="Instance variable">anim_dur</param>
+                                    <param id="1" name="Value">dt</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="110883971517284">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="588676257489418" type="System" />
+                                <condition id="2" inverted="1" name="Is playing" sid="824055788750543" type="C6_Animals">
+                                    <param id="0" name="Animation">&quot;moving&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="867445921207216" type="C6_Animals">
+                                    <param id="0" name="Animation">&quot;moving&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
